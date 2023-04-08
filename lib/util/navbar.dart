@@ -8,6 +8,7 @@ import 'package:flutterati_codeshastra/screens/Home/home.dart';
 import 'package:flutterati_codeshastra/screens/Loan/loan.dart';
 import 'package:flutterati_codeshastra/screens/Profile/profile.dart';
 import 'package:flutterati_codeshastra/screens/Track/track.dart';
+import 'package:flutterati_codeshastra/services/smsrecieving.dart';
 
 class MyNavbar extends StatefulWidget {
   const MyNavbar({super.key});
@@ -31,7 +32,7 @@ class _MyNavbarState extends State<MyNavbar> {
             initialAmount: 1253)
       ],
     ),
-    Loan(),
+    SmsScreen(),
     Tracking(),
     ForumPage(),
   ];
