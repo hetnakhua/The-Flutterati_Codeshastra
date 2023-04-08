@@ -1,168 +1,352 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterati_codeshastra/constants/colors.dart';
+import 'package:flutterati_codeshastra/models/forumpost.dart';
+import 'package:flutterati_codeshastra/screens/Auth/login.dart';
+import 'package:flutterati_codeshastra/screens/Discussion/add_post.dart';
+import 'package:flutterati_codeshastra/util/re_use.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../util/my_tab.dart';
 
 class ForumPage extends StatefulWidget {
-  ForumPage({super.key, required this.title});
-
-  final String title;
+  const ForumPage({Key? key}) : super(key: key);
 
   @override
-  _ForumPageState createState() => new _ForumPageState();
+  State<ForumPage> createState() => _ForumPageState();
 }
 
-class _ForumPageState extends State<ForumPage> {
-  /// Top Icons
-  var topCategoyIcons = new Container(
-    alignment: Alignment.center,
-    child: new Container(
-      alignment: Alignment.bottomCenter,
-      margin: const EdgeInsets.symmetric(
-        horizontal: 10.0,
-        vertical: 0.0,
-      ),
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          new CategoryIcon(Icons.landscape, "Nature", true),
-          new CategoryIcon(Icons.headset, "Music", false),
-          new CategoryIcon(Icons.movie, "Movies", false),
-          new CategoryIcon(Icons.place, "Places", false),
-        ],
-      ),
+class _ForumPageState extends State<ForumPage>
+    with SingleTickerProviderStateMixin {
+  List<Widget> myTabs = const [
+    // donut tab
+    MyTab(
+      text: 'Stocks',
     ),
-  );
 
-  var categoryMetric = new Container(
-    padding: const EdgeInsets.all(5.0),
-    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
-    decoration: new BoxDecoration(
-      // border: new Border.all(color: Colors.black, width: 1.0),
-      borderRadius: new BorderRadius.only(
-        bottomLeft: new Radius.circular(30.0),
-        bottomRight: new Radius.circular(30.0),
-      ),
+    // burger tab
+    MyTab(
+      text: 'Mutual Funds',
     ),
-    child: new Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        new CategoryIcon(Icons.cake, "Food", false),
-        new CategoryIcon(Icons.book, "Book", false),
-        new CategoryIcon(Icons.games, "Games", false),
-        new CategoryIcon(Icons.history, "History", false),
-      ],
-    ),
-  );
 
-  static final listItemsData = [
-    new ListEntry("Forum 1", "test", "description 1", 54, 2, true),
-    new ListEntry("Forum 2", "test", "description 2",  154, 3,false),
-    new ListEntry("Forum 3", "test", "description 3", 971, 0, false),
-    new ListEntry("Forum 4", "test", "description 4",  124, 2,true),
-    new ListEntry("Forum 5", "test", "description 5",  412, 5,true),
-    new ListEntry("Forum 6", "test", "description 6",  12, 1,true),
+    MyTab(
+      text: 'Fixed Deposit',
+    ),
+
+    MyTab(
+      text: 'Other',
+    ),
   ];
-  var listView = new ListView.builder(
-    itemBuilder: (BuildContext context, int index) =>
-    new EntryItem(listItemsData[index]),
-    itemCount: listItemsData.length,
-    shrinkWrap: true,
-  );
+
+  TabController? tabController;
+
+  @override
+  void initState() {
+    tabController = TabController(length: 3, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    tabController!.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        centerTitle: false,
-        elevation: 0.0,
-        title: new Text(
-          widget.title,
-          textScaleFactor: 1.3,
-        ),
-        actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.search),
-            onPressed: _onSearchPressed,
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: RichText(
+                text: TextSpan(
+                  text: 'Forum',
+                  style: GoogleFonts.poppins(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w400,
+                    // color: Colors.black,
+                  ),
+                ),
+              ),
+              automaticallyImplyLeading: false,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut().then((value) {
+                      print("Signed out");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (builder) => LoginScreen()));
+                    });
+                  },
+                  icon: Icon(
+                    Icons.logout_rounded,
+                    color: white,
+                    size: 30,
+                  ),
+                ),
+              ],
+            ),
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 25),
+                        Container(
+                          // height: 50,
+                          width: MediaQuery.of(context).size.height,
+                          decoration: BoxDecoration(
+                              color: outerSpaceGrey,
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8),
+                                child: TabBar(
+                                  unselectedLabelColor: Colors.white,
+                                  labelColor: Colors.black,
+                                  indicatorColor: Colors.white,
+                                  indicatorWeight: 2,
+                                  indicator: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  controller: tabController,
+                                  tabs: [
+                                    Tab(
+                                      text: 'Investing',
+                                    ),
+                                    Tab(
+                                      text: 'Savings',
+                                    ),
+                                    Tab(
+                                      text: 'Loans',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: TabBarView(
+                            controller: tabController,
+                            children: [
+                              TabCategory1(),
+                              TabCategory2(),
+                              TabCategory3(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ],
-      ),
-      body: new Container(
-        child: new Column(
-          children: <Widget>[topCategoyIcons, categoryMetric, listView],
         ),
       ),
     );
   }
-  void _onSearchPressed() {
-    Navigator.pop(context);
-  }
 }
 
-class ListEntry {
-  final String title;
-  final String icon;
-  final String description;
-  final int views;
-  final int responses;
-  final bool answered;
-
-  ListEntry(this.title, this.icon, this.description, this.views, this.responses, this.answered);
-}
-
-class CategoryIcon extends StatelessWidget {
-  const CategoryIcon(this.icon, this.iconText, this.selected);
-
-  final String iconText;
-  final IconData icon;
-  final bool selected;
+class TabCategory1 extends StatelessWidget {
+  TabCategory1({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      child: new Column(
-        children: <Widget>[
-          new IconButton(
-            icon: new Icon(icon),
-            onPressed: _onSearchPressed,
+    return Container(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 25,
           ),
-          new Text(iconText)
+          Container(
+            height: 500,
+            child: ListView(
+              children: [
+                PostTile(name: 'Het', post: 'Should I invest in NFTs?'),
+                PostTile(name: 'Nishtha', post: 'Best investments?'),
+                PostTile(name: 'Abhishek', post: 'Investment help')
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 100,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (builder) => AddPost()));
+            },
+            child: Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: midnightGreenLight,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Text(
+                  "Add Question",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
   }
-
-  static void _onSearchPressed() {
-  }
 }
 
-class EntryItem extends StatelessWidget {
-  const EntryItem(this.entry);
-
-  final ListEntry entry;
+class TabCategory2 extends StatelessWidget {
+  TabCategory2({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      padding: const EdgeInsets.all(3.0),
-      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
-      decoration: new BoxDecoration(
-        borderRadius: new BorderRadius.all(new Radius.circular(15.0)),
+    return Container(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 25,
+          ),
+          Container(
+            height: 500,
+            child: ListView(
+              children: [
+                PostTile(name: 'Roshni', post: 'How to save more?'),
+                PostTile(name: 'Nishtha', post: 'Budgeting advice'),
+                PostTile(name: 'Vatsal', post: 'Savings reducing')
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 100,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (builder) => AddPost()));
+            },
+            child: Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: midnightGreenLight,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Text(
+                  "Add Question",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
-      child: new ListTile(
-        title: new Text(entry.title),
-        subtitle: new Text(entry.description),
-        leading: new Icon(
-          Icons.dashboard,
-        ),
-        trailing: new Row(
-          verticalDirection: VerticalDirection.up,
-          children: <Widget>[
-            new CategoryIcon(Icons.remove_red_eye, entry.views.toString(), false),
-            new CategoryIcon(Icons.comment, entry.responses.toString(), false),
-          ],
-        ),
-        onTap: () {Navigator.pushNamed(context, '/forum/1');},
+    );
+  }
+}
+class TabCategory3 extends StatelessWidget {
+  TabCategory3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 25,
+          ),
+          Container(
+            height: 500,
+            child: ListView(
+              children: [
+                PostTile(name: 'Vaibhav', post: 'Should I take a loan?'),
+                PostTile(name: 'Roshan', post: 'Student Loan Help?'),
+                PostTile(name: 'Abhishek', post: 'Investment help')
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 100,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (builder) => AddPost()));
+            },
+            child: Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: midnightGreenLight,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Text(
+                  "Add Question",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
+    );
+  }
+}
+
+class PostTile extends StatelessWidget {
+  final String name;
+  final String post;
+  const PostTile({Key? key, required this.name, required this.post}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        // height: 100,
+        padding: EdgeInsets.all(15),
+        margin: EdgeInsets.all(5),
+        color: outerSpaceGrey,
+        child: Row(children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(name),
+              Text(
+                post,
+                style: TextStyle(fontSize: 18),
+              )
+            ],
+          ),
+          Spacer(),
+          IconButton(onPressed: (){},
+              icon: Icon(Icons.chat))
+        ])
     );
   }
 }

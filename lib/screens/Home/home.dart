@@ -1,8 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterati_codeshastra/screens/ChatScreen/chat_list_screen.dart';
 
-
-
+import '../../util/my_tab.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,16 +10,42 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
-  final chats = <Chat>[
-    Chat(id: "Abhishek", name: "Abhishek Sinha", lastMessage: "hello"),
-    Chat(id: "sjdlf", name: "Vatsal Shah", lastMessage: "bye"),
-    Chat(id: "het", name: "HEt Sinha", lastMessage: "??"),
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  // my tabs
+  List<Widget> myTabs = const [
+    // donut tab
+    MyTab(
+      text: 'Daily',
+    ),
+
+    // burger tab
+    MyTab(
+      text: 'Weekly',
+    ),
   ];
+
+  TabController? tabController;
+
+  @override
+  void initState() {
+    tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    tabController!.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ChatListScreen(chats: chats,)
+      body: Column(
+        children: [
+          Text('home'),
+        ],
+      ),
     );
   }
 }

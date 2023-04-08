@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/models/account.dart';
 import 'package:flutterati_codeshastra/screens/Account/accounts_page_v2.dart';
+import 'package:flutterati_codeshastra/screens/Discussion/forum.dart';
 import 'package:flutterati_codeshastra/screens/Home/home.dart';
 import 'package:flutterati_codeshastra/screens/Loan/loan.dart';
 import 'package:flutterati_codeshastra/screens/Profile/profile.dart';
@@ -32,7 +33,7 @@ class _MyNavbarState extends State<MyNavbar> {
     ),
     Loan(),
     Tracking(),
-    Profile(),
+    ForumPage(),
   ];
 
   @override
@@ -75,8 +76,8 @@ class _MyNavbarState extends State<MyNavbar> {
               icon: Icons.track_changes_rounded,
             ),
             CustomBottomBarItems(
-              label: 'Profile',
-              icon: Icons.account_circle,
+              label: 'Forum',
+              icon: Icons.people,
             ),
           ],
         ));

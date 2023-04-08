@@ -14,9 +14,18 @@ Future addPost(String text) async{
     );
 
     final json = post.toJson();
-    await FirebaseFirestore.instance.collection('posts').doc(id).set(json);
+    await FirebaseFirestore.instance.collection('posts').doc().set(json);
   }
   catch(e){
     print("$e");
   }
 }
+
+// Future<List<f.ForumPostEntry>> getPosts() async{
+//   await FirebaseFirestore.instance.collection('posts').get().then(
+//       querySnapshot => {
+//       querySnapshot.docs.forEach(doc => {
+//       markers.push(doc.data());
+//       }
+//   );
+// }
