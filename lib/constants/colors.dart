@@ -12,7 +12,7 @@ const Color lightYellow = Color(0xFFFCFFE7);
 const Color pink = Color(0xFFEB455F);
 
 const Color midnightGreen = Color(0xFF063840);
-const Color midnightGreenLight = Color(0xFF025564);
+const Color midnightGreenLight = Color(0xFF0388A0);
 const Color raisinBlack = Color(0xFF242224);
 const Color outerSpaceGrey = Color(0xFF3F4C50);
 
