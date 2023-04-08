@@ -39,11 +39,17 @@ dependencies:
   firebase_auth: ^4.4.0
   firebase_core: ^2.7.0
   google_fonts:
+  get_it:
+  glassmorphism:
+
 
   cloud_firestore: ^4.5.0
 
   custom_line_indicator_bottom_navbar: ^0.0.8
   google_maps_flutter: ^2.2.5
+  custom_info_window:
+
+
 
 
 dev_dependencies:

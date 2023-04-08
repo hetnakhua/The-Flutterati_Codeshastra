@@ -14,7 +14,7 @@ class _TrackingState extends State<Tracking> {
     return Scaffold(
       body: Container(
 
-        child: Placeholder(),
+        child: MapScreen(),
       ),
     );
   }

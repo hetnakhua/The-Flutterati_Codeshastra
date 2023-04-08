@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterati_codeshastra/screens/Home/home.dart';
-import 'package:flutterati_codeshastra/screens/Profile/login.dart';
+import 'package:flutterati_codeshastra/screens/Auth/login.dart';
 import 'package:flutterati_codeshastra/services/database.dart';
 import 'package:flutterati_codeshastra/util/re_use.dart';
 
@@ -41,7 +41,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 // logo
                 Padding(
                   padding: const EdgeInsets.fromLTRB(24, 0, 48, 0),
-                  child: Image.asset('assets/SpendSense logo sq.png', scale: 1.4),
+                  child:
+                      Image.asset('assets/SpendSense logo sq.png', scale: 1.4),
                 ),
                 SizedBox(height: 40),
 
@@ -145,8 +146,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     String uid =
                         (FirebaseAuth.instance.currentUser?.uid).toString();
                     print(_error);
-                    addUser(_name.text, _email.text, uid, _loc.text,
-                        int.parse(_age.text), _gen.text, int.parse(_mob.text));
+                    addUser(_name.text, _email.text, uid, "DJSCE", "20082003");
                     Navigator.push(context,
                         MaterialPageRoute(builder: (builder) => Home()));
                   }).onError((error, stackTrace) {
