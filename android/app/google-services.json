@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "157711572661",
+    "project_id": "the-flutterati-codeshastra",
+    "storage_bucket": "the-flutterati-codeshastra.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157711572661:android:149bb9b1bdfb448c7528fc",
+        "android_client_info": {
+          "package_name": "com.example.flutterati_codeshastra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157711572661-qp3k7n8nu6umaukj3fr8m54p6ettm9s8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutterati_codeshastra",
+            "certificate_hash": "85d2c48936c62773f57953eeb9b0f6fc8176a164"
+          }
+        },
+        {
+          "client_id": "157711572661-qunfi5e4810a7mbj6ls196mh7dl06fef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC08jmmjYMp_uxybJnr2kMyhm7pU-btxnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157711572661-qunfi5e4810a7mbj6ls196mh7dl06fef.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
