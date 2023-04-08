@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
+import 'package:flutterati_codeshastra/screens/Track/Tabs/Tab_daily.dart';
+import 'package:flutterati_codeshastra/screens/Track/Tabs/Tab_weekly.dart';
+import 'package:flutterati_codeshastra/util/my_tab.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 GestureDetector singInUp(BuildContext context, bool isLogin, Function clickMe) {
@@ -80,98 +83,185 @@ Column inputText(String text, String hintText, TextEditingController controller,
 
 Container balanceCard(BuildContext context) {
   return Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: outerSpaceGrey),
-              width: MediaQuery.of(context).size.width,
-              // height: 200,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Total balance',
-                      style: GoogleFonts.poppins(
-                        color: Colors.white60,
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16), color: outerSpaceGrey),
+    width: MediaQuery.of(context).size.width,
+    // height: 200,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Total balance',
+            style: GoogleFonts.poppins(
+              color: Colors.white60,
+            ),
+          ),
+          Text(
+            '\$62,845.00',
+            style: GoogleFonts.poppins(
+                // color: Colors.white60,
+                fontSize: 32,
+                fontWeight: FontWeight.w600),
+          ),
+          SizedBox(height: 16),
+          Text(
+            'This month',
+            style: GoogleFonts.poppins(
+              color: Colors.white60,
+            ),
+          ),
+          SizedBox(height: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_drop_down_sharp,
+                        color: Colors.green,
                       ),
-                    ),
-                    Text(
-                      '\$62,845.00',
-                      style: GoogleFonts.poppins(
-                          // color: Colors.white60,
-                          fontSize: 32,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(height: 16),
-                    Text(
-                      'This month',
-                      style: GoogleFonts.poppins(
-                        color: Colors.white60,
+                      SizedBox(width: 2),
+                      Text(
+                        'Credit',
+                        style: GoogleFonts.poppins(
+                          color: Colors.white60,
+                          fontSize: 12,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 4),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.arrow_drop_down_sharp,
-                                  color: Colors.green,
-                                ),
-                                SizedBox(width: 2),
-                                Text(
-                                  'Credit',
-                                  style: GoogleFonts.poppins(
-                                    color: Colors.white60,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              '+\$5503.00',
-                              style: GoogleFonts.poppins(
-                                fontSize: 16
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(width: 60),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.arrow_drop_up_sharp,
-                                  color: Colors.red,
-                                ),
-                                SizedBox(width: 2),
-                                Text(
-                                  'Debit',
-                                  style: GoogleFonts.poppins(
-                                    color: Colors.white60,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              '-\$2739.00',
-                              style: GoogleFonts.poppins(fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+                    ],
+                  ),
+                  Text(
+                    '+\$5503.00',
+                    style: GoogleFonts.poppins(fontSize: 16),
+                  ),
+                ],
               ),
-            );
+              SizedBox(width: 60),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_drop_up_sharp,
+                        color: Colors.red,
+                      ),
+                      SizedBox(width: 2),
+                      Text(
+                        'Debit',
+                        style: GoogleFonts.poppins(
+                          color: Colors.white60,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    '-\$2739.00',
+                    style: GoogleFonts.poppins(fontSize: 16),
+                  ),
+                ],
+              ),
+            ],
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+Positioned tabsContainer(
+    BuildContext context, TabController tabController, List<MyTab> myTabs) {
+  return Positioned(
+    top: 200,
+    child: Container(
+      height: 240, // MediaQuery.of(context).size.height,
+      color: pink,
+      child: Column(
+        children: [
+          SizedBox(height: 50),
+          Container(
+            // height: 50,
+            width: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+                color: outerSpaceGrey, borderRadius: BorderRadius.circular(16)),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8),
+                  child: TabBar(
+                    unselectedLabelColor: Colors.white,
+                    labelColor: Colors.black,
+                    indicatorColor: Colors.white,
+                    indicatorWeight: 2,
+                    indicator: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    controller: tabController,
+                    tabs: myTabs,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: tabController,
+              children: [
+                TabDaily(),
+                TabWeekly(),
+              ],
+            ),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+Column leaderboardTop3PerUser(List<String> top3, int rank) {
+  return Column(
+    children: [
+      Stack(
+        clipBehavior: Clip.none,
+        children: [
+          CircleAvatar(
+            backgroundColor: midnightGreen,
+            radius: 48,
+            child: CircleAvatar(
+              child: Image.asset('assets/profile avatar.png'),
+              radius: 42,
+            ),
+          ),
+          Positioned(
+            bottom: -8,
+            right: 36,
+            child: CircleAvatar(
+              backgroundColor: midnightGreen,
+              radius: 14,
+            ),
+          ),
+          Positioned(
+            bottom: -6,
+            right: 44,
+            child: Text(
+              '$rank',
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+        ],
+      ),
+      SizedBox(height: 16),
+      Text(
+        top3[rank-1],
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+      ),
+    ],
+  );
 }
