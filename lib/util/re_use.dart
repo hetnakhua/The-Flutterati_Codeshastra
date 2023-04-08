@@ -85,52 +85,49 @@ Column inputText(String text, String hintText, TextEditingController controller,
   );
 }
 
-Positioned tabsContainer(
+Container tabsContainer(
     BuildContext context, TabController tabController, List<MyTab> myTabs) {
-  return Positioned(
-    top: 200,
-    child: Container(
-      height: 240, // MediaQuery.of(context).size.height,
-      color: pink,
-      child: Column(
-        children: [
-          SizedBox(height: 50),
-          Container(
-            // height: 50,
-            width: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-                color: outerSpaceGrey, borderRadius: BorderRadius.circular(16)),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: TabBar(
-                    unselectedLabelColor: Colors.white,
-                    labelColor: Colors.black,
-                    indicatorColor: Colors.white,
-                    indicatorWeight: 2,
-                    indicator: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    controller: tabController,
-                    tabs: myTabs,
+  return Container(
+    height: 240, // MediaQuery.of(context).size.height,
+    // color: pink,
+    child: Column(
+      children: [
+        // SizedBox(height: 50),
+        Container(
+          // height: 50,
+          width: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+              color: outerSpaceGrey, borderRadius: BorderRadius.circular(16)),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: TabBar(
+                  unselectedLabelColor: Colors.white,
+                  labelColor: Colors.black,
+                  indicatorColor: Colors.white,
+                  indicatorWeight: 2,
+                  indicator: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
                   ),
+                  controller: tabController,
+                  tabs: myTabs,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Expanded(
-            child: TabBarView(
-              controller: tabController,
-              children: [
-                TabDaily(),
-                TabWeekly(),
-              ],
-            ),
-          )
-        ],
-      ),
+        ),
+        Expanded(
+          child: TabBarView(
+            controller: tabController,
+            children: [
+              TabDaily(),
+              TabWeekly(),
+            ],
+          ),
+        )
+      ],
     ),
   );
 }
