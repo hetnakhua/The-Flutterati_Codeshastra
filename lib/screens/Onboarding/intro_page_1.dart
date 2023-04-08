@@ -22,6 +22,7 @@ class _IntroPage1State extends State<IntroPage1> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: LavaAnimation(
+          color: midnightGreenLight,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
@@ -32,11 +33,11 @@ class _IntroPage1State extends State<IntroPage1> {
                 ),
                 Text(
                   "SpendSense",
-                  style: TextStyle(fontSize: 50, color: midnightGreenLight),
+                  style: TextStyle(fontSize: 50, color: white),
                 ),
                 Text(
                   "Simple way to help control your savings",
-                  style: TextStyle(fontSize: 20, color: midnightGreenLight),
+                  style: TextStyle(fontSize: 20, color: white),
                 ),
                 const SizedBox(height: 24),
                 Column(
@@ -98,10 +99,6 @@ class _IntroPage1State extends State<IntroPage1> {
             },
             child: Text(
               "Get Started",
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.bold,
-                  ),
             ),
           ),
         ),
