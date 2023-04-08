@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/models/forumpost.dart';
 import 'package:flutterati_codeshastra/screens/Auth/login.dart';
+import 'package:flutterati_codeshastra/screens/Discussion/add_post.dart';
 import 'package:flutterati_codeshastra/util/re_use.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,15 +16,8 @@ class ForumPage extends StatefulWidget {
   State<ForumPage> createState() => _ForumPageState();
 }
 
-class _ForumPageState extends State<ForumPage> with SingleTickerProviderStateMixin {
-
-  final id = (FirebaseAuth.instance.currentUser?.uid).toString();
-  List<ForumPostEntry> invest =
-  [
-    ForumPostEntry(username: 'Het', time: '8/4/23', likes: 50, dislikes: 3, text: 'Should I invest in Crypto?'),
-    ForumPostEntry(username: 'Nishtha', time: '20/3/23', likes: 100, dislikes: 10, text: 'Best Investment for students?'),
-    ForumPostEntry(username: 'Abhishek', time: '12/3/23', likes: 38, dislikes: 2, text: 'How much should a student invest?'),
-  ];
+class _ForumPageState extends State<ForumPage>
+    with SingleTickerProviderStateMixin {
   List<Widget> myTabs = const [
     // donut tab
     MyTab(
@@ -149,9 +143,9 @@ class _ForumPageState extends State<ForumPage> with SingleTickerProviderStateMix
                           child: TabBarView(
                             controller: tabController,
                             children: [
-                              TabCategory(l: invest,),
-                              TabCategory(l: invest),
-                              TabCategory(l: invest),
+                              TabCategory1(),
+                              TabCategory2(),
+                              TabCategory3(),
                             ],
                           ),
                         ),
@@ -168,34 +162,191 @@ class _ForumPageState extends State<ForumPage> with SingleTickerProviderStateMix
   }
 }
 
-class TabCategory extends StatelessWidget {
-  final List<ForumPostEntry> l;
-  TabCategory({super.key, required this.l});
+class TabCategory1 extends StatelessWidget {
+  TabCategory1({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
+          SizedBox(
+            height: 25,
+          ),
           Container(
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              color: midnightGreenLight,
-              borderRadius: BorderRadius.circular(12),
+            height: 500,
+            child: ListView(
+              children: [
+                PostTile(name: 'Het', post: 'Should I invest in NFTs?'),
+                PostTile(name: 'Nishtha', post: 'Best investments?'),
+                PostTile(name: 'Abhishek', post: 'Investment help')
+              ],
             ),
-            child: Center(
-              child: Text(
-                "Add Question",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
+          ),
+          SizedBox(
+            height: 100,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (builder) => AddPost()));
+            },
+            child: Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: midnightGreenLight,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Text(
+                  "Add Question",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
-          ),
+          )
         ],
       ),
+    );
+  }
+}
+
+class TabCategory2 extends StatelessWidget {
+  TabCategory2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 25,
+          ),
+          Container(
+            height: 500,
+            child: ListView(
+              children: [
+                PostTile(name: 'Roshni', post: 'How to save more?'),
+                PostTile(name: 'Nishtha', post: 'Budgeting advice'),
+                PostTile(name: 'Vatsal', post: 'Savings reducing')
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 100,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (builder) => AddPost()));
+            },
+            child: Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: midnightGreenLight,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Text(
+                  "Add Question",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+class TabCategory3 extends StatelessWidget {
+  TabCategory3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 25,
+          ),
+          Container(
+            height: 500,
+            child: ListView(
+              children: [
+                PostTile(name: 'Vaibhav', post: 'Should I take a loan?'),
+                PostTile(name: 'Roshan', post: 'Student Loan Help?'),
+                PostTile(name: 'Abhishek', post: 'Investment help')
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 100,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (builder) => AddPost()));
+            },
+            child: Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: midnightGreenLight,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Text(
+                  "Add Question",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class PostTile extends StatelessWidget {
+  final String name;
+  final String post;
+  const PostTile({Key? key, required this.name, required this.post}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        // height: 100,
+        padding: EdgeInsets.all(15),
+        margin: EdgeInsets.all(5),
+        color: outerSpaceGrey,
+        child: Row(children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(name),
+              Text(
+                post,
+                style: TextStyle(fontSize: 18),
+              )
+            ],
+          ),
+          Spacer(),
+          IconButton(onPressed: (){},
+              icon: Icon(Icons.chat))
+        ])
     );
   }
 }
