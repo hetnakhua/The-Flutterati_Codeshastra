@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/screens/Home/home.dart';
 import 'package:flutterati_codeshastra/screens/Profile/register.dart';
+import 'package:flutterati_codeshastra/util/navbar.dart';
 import 'package:flutterati_codeshastra/util/re_use.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -49,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     setState(() => _error = 'Signed In Successfully');
                     print(_error);
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (builder) => Home()));
+                        MaterialPageRoute(builder: (builder) => MyNavbar()));
                   }).onError((error, stackTrace) {
                     setState(() => _error = error
                         .toString()
