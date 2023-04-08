@@ -108,6 +108,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   onPressed: () {
                     FirebaseAuth.instance.signOut().then((value) {
                       print("Signed out");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (builder) => LoginScreen()));
                     });
                   },
                   icon: Icon(
