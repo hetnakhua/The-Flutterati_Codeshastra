@@ -148,7 +148,7 @@ class MobileAccountCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            "\u20B9 789",
+                            expense,
                             style: GoogleFonts.manrope(
                               textStyle: Theme.of(context).textTheme.titleLarge,
                             ),

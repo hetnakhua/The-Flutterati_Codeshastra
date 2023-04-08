@@ -2,52 +2,36 @@
 import 'dart:convert';
 
 class Expense {
-  final String name;
-  final String description;
   final DateTime time;
-  final int accountId;
-  final int categoryId;
+  final int amount;
+  final String category;
+  final double lat;
+  final double lng;
   Expense({
-    required this.name,
-    required this.description,
     required this.time,
-    required this.accountId,
-    required this.categoryId,
+    required this.amount,
+    required this.category,
+    required this.lat,
+    required this.lng,
   });
-
-  Expense copyWith({
-    String? name,
-    String? description,
-    DateTime? time,
-    int? accountId,
-    int? categoryId,
-  }) {
-    return Expense(
-      name: name ?? this.name,
-      description: description ?? this.description,
-      time: time ?? this.time,
-      accountId: accountId ?? this.accountId,
-      categoryId: categoryId ?? this.categoryId,
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'name': name,
-      'description': description,
       'time': time.millisecondsSinceEpoch,
-      'accountId': accountId,
-      'categoryId': categoryId,
+      'amount': amount,
+      'category': category,
+      'lat': lat,
+      'lng': lng,
     };
   }
 
   factory Expense.fromMap(Map<String, dynamic> map) {
     return Expense(
-      name: map['name'] as String,
-      description: map['description'] as String,
       time: DateTime.fromMillisecondsSinceEpoch(map['time'] as int),
-      accountId: map['accountId'] as int,
-      categoryId: map['categoryId'] as int,
+      amount: map['amount'] as int,
+      category: map['category'] as String,
+      lat: map['lat'] as double,
+      lng: map['lng'] as double,
     );
   }
 
@@ -55,29 +39,4 @@ class Expense {
 
   factory Expense.fromJson(String source) =>
       Expense.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() {
-    return 'Expense(name: $name, description: $description, time: $time, accountId: $accountId, categoryId: $categoryId)';
-  }
-
-  @override
-  bool operator ==(covariant Expense other) {
-    if (identical(this, other)) return true;
-
-    return other.name == name &&
-        other.description == description &&
-        other.time == time &&
-        other.accountId == accountId &&
-        other.categoryId == categoryId;
-  }
-
-  @override
-  int get hashCode {
-    return name.hashCode ^
-        description.hashCode ^
-        time.hashCode ^
-        accountId.hashCode ^
-        categoryId.hashCode;
-  }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/screens/Home/Tabs/Tab_daily.dart';
 import 'package:flutterati_codeshastra/screens/Home/Tabs/Tab_weekly.dart';
-import 'package:flutterati_codeshastra/screens/Profile/login.dart';
 import 'package:flutterati_codeshastra/util/re_use.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -94,10 +93,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   onPressed: () {
                     FirebaseAuth.instance.signOut().then((value) {
                       print("Signed out");
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (builder) => LoginScreen()));
                     });
                   },
                   icon: Icon(
