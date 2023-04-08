@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/screens/Home/home.dart';
 import 'package:flutterati_codeshastra/screens/Profile/register.dart';
+import 'package:flutterati_codeshastra/util/navbar.dart';
 import 'package:flutterati_codeshastra/util/re_use.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -30,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // logo
                 Padding(
                   padding: const EdgeInsets.fromLTRB(24, 0, 48, 0),
-                  child: Image.asset('assets/spark logo rect.png'),
+                  child: Image.asset('assets/SpendSense logo sq.png'),
                 ),
                 SizedBox(height: 60),
 
@@ -41,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 40,
                 ),
+
                 singInUp(context, true, () {
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
@@ -49,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     setState(() => _error = 'Signed In Successfully');
                     print(_error);
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (builder) => Home()));
+                        MaterialPageRoute(builder: (builder) => MyNavbar()));
                   }).onError((error, stackTrace) {
                     setState(() => _error = error
                         .toString()
@@ -84,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         Text(
           "Do not have an account? ",
-          style: TextStyle(color: black),
+          // style: TextStyle(color: black),
         ),
         GestureDetector(
           onTap: () {
