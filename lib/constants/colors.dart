@@ -18,3 +18,4 @@ const Color outerSpaceGrey = Color(0xFF3F4C50);
 
 const Color black = Color(0xFF2A2B2A);
 const Color white = Color.fromARGB(255, 255, 255, 255);
+const Color disabledGrey = Color.fromRGBO(117, 117, 117, 1);
