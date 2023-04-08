@@ -39,6 +39,8 @@ dependencies:
   firebase_auth: ^4.4.0
   firebase_core: ^2.7.0
   google_fonts:
+  get_it:
+  glassmorphism:
 
   cloud_firestore: ^4.5.0
 

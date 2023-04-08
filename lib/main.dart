@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
+import 'package:flutterati_codeshastra/models/account.dart';
+import 'package:flutterati_codeshastra/screens/Account/accounts_page_v2.dart';
 import 'package:flutterati_codeshastra/screens/Auth/auth.dart';
 import 'package:flutterati_codeshastra/screens/Onboarding/intro_page_1.dart';
 import 'package:flutterati_codeshastra/screens/Auth/login.dart';
@@ -45,6 +47,14 @@ class MyApp extends StatelessWidget {
         '/intro': (context) => const IntroPage1(),
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
+        '/accounts': (context) => AccountsPage(accounts: [
+              Account(
+                  name: "BOB",
+                  bankName: "BOB",
+                  amount: 7890,
+                  number: "number",
+                  initialAmount: 1253)
+            ])
       },
     );
   }

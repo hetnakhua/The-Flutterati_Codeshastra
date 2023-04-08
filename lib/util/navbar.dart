@@ -1,7 +1,8 @@
 import 'package:custom_line_indicator_bottom_navbar/custom_line_indicator_bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
-import 'package:flutterati_codeshastra/screens/Account/account.dart';
+import 'package:flutterati_codeshastra/models/account.dart';
+import 'package:flutterati_codeshastra/screens/Account/accounts_page_v2.dart';
 import 'package:flutterati_codeshastra/screens/Home/home.dart';
 import 'package:flutterati_codeshastra/screens/Loan/loan.dart';
 import 'package:flutterati_codeshastra/screens/Profile/profile.dart';
@@ -19,7 +20,16 @@ class _MyNavbarState extends State<MyNavbar> {
   //default index
   List<Widget> _widgetOptions = [
     Home(),
-    Account(),
+    AccountsPage(
+      accounts: [
+        Account(
+            name: "BOB",
+            bankName: "BOB",
+            amount: 7890,
+            number: "number",
+            initialAmount: 1253)
+      ],
+    ),
     Loan(),
     Tracking(),
     Profile(),
