@@ -13,16 +13,14 @@ class _AddPostState extends State<AddPost> {
   TextEditingController _post = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Column(
         children: [
-          inputText('Post', 'Enter post', _post, false),
+          Expanded(child: inputText('Post', 'Enter post', _post, false)),
           TextButton(onPressed: ()
               async {
                 await addPost(_post.text);
               }, child: Text('Add'))
         ],
-      ),
-    );
+      );
   }
 }

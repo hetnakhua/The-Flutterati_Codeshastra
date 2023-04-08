@@ -3,6 +3,10 @@ import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/screens/Track/Tabs/Tab_daily.dart';
 import 'package:flutterati_codeshastra/screens/Track/Tabs/Tab_weekly.dart';
 import 'package:flutterati_codeshastra/util/my_tab.dart';
+
+import 'package:flutterati_codeshastra/models/income.dart';
+import 'package:flutterati_codeshastra/screens/Home/controller/home_controller.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 GestureDetector singInUp(BuildContext context, bool isLogin, Function clickMe) {
@@ -78,100 +82,6 @@ Column inputText(String text, String hintText, TextEditingController controller,
         height: 20,
       ),
     ],
-  );
-}
-
-Container balanceCard(BuildContext context) {
-  return Container(
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16), color: outerSpaceGrey),
-    width: MediaQuery.of(context).size.width,
-    // height: 200,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Total balance',
-            style: GoogleFonts.poppins(
-              color: Colors.white60,
-            ),
-          ),
-          Text(
-            '\$62,845.00',
-            style: GoogleFonts.poppins(
-                // color: Colors.white60,
-                fontSize: 32,
-                fontWeight: FontWeight.w600),
-          ),
-          SizedBox(height: 16),
-          Text(
-            'This month',
-            style: GoogleFonts.poppins(
-              color: Colors.white60,
-            ),
-          ),
-          SizedBox(height: 4),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_drop_down_sharp,
-                        color: Colors.green,
-                      ),
-                      SizedBox(width: 2),
-                      Text(
-                        'Credit',
-                        style: GoogleFonts.poppins(
-                          color: Colors.white60,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    '+\$5503.00',
-                    style: GoogleFonts.poppins(fontSize: 16),
-                  ),
-                ],
-              ),
-              SizedBox(width: 60),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_drop_up_sharp,
-                        color: Colors.red,
-                      ),
-                      SizedBox(width: 2),
-                      Text(
-                        'Debit',
-                        style: GoogleFonts.poppins(
-                          color: Colors.white60,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    '-\$2739.00',
-                    style: GoogleFonts.poppins(fontSize: 16),
-                  ),
-                ],
-              ),
-            ],
-          )
-        ],
-      ),
-    ),
   );
 }
 
@@ -259,9 +169,122 @@ Column leaderboardTop3PerUser(List<String> top3, int rank) {
       ),
       SizedBox(height: 16),
       Text(
-        top3[rank-1],
+        top3[rank - 1],
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
       ),
     ],
   );
+}
+
+Widget balanceCard(BuildContext context) {
+  HomeController homeController = Get.put(HomeController());
+  return StreamBuilder<List<Income>>(
+      stream: homeController.getUserIncomeDetails(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting)
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        else if (snapshot.hasError) {
+        } else {
+          List<Income> incomes = snapshot.data!;
+          int totalIncome = 0;
+          for (int i = 0; i < snapshot.data!.length; i++) {
+            totalIncome += incomes[i].amount;
+          }
+          return Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20), color: outerSpaceGrey),
+            width: MediaQuery.of(context).size.width,
+            // height: 200,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Total balance',
+                    style: GoogleFonts.poppins(
+                      color: Colors.white60,
+                    ),
+                  ),
+                  Text(
+                    '\$62,845.00',
+                    style: GoogleFonts.poppins(
+                        // color: Colors.white60,
+                        fontSize: 32,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'This month',
+                    style: GoogleFonts.poppins(
+                      color: Colors.white60,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.arrow_drop_down_sharp,
+                                color: Colors.green,
+                              ),
+                              SizedBox(width: 2),
+                              Text(
+                                'Credit',
+                                style: GoogleFonts.poppins(
+                                  color: Colors.white60,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            '+\u20B9${totalIncome}',
+                            style: GoogleFonts.poppins(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 60),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.arrow_drop_up_sharp,
+                                color: Colors.red,
+                              ),
+                              SizedBox(width: 2),
+                              Text(
+                                'Debit',
+                                style: GoogleFonts.poppins(
+                                  color: Colors.white60,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            '-\$2739.00',
+                            style: GoogleFonts.poppins(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        }
+        return Container();
+      });
 }

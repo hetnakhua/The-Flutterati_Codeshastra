@@ -41,6 +41,10 @@ dependencies:
   google_fonts:
   get_it:
   glassmorphism:
+  readsms:
+  get:
+
+  telephony:
 
   cloud_firestore: ^4.5.0
 

@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/screens/Auth/login.dart';
+import 'package:flutterati_codeshastra/screens/Home/controller/home_controller.dart';
 import 'package:flutterati_codeshastra/util/re_use.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
@@ -13,6 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  HomeController homeController = Get.put(HomeController());
   List<String> top3 = [
     'I',
     'Love',
@@ -35,6 +38,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // homeController.addExpense(
+    //     expense: Expense(
+    //         time: DateTime(2022),
+    //         amount: 100,
+    //         category: "Shopping",
+    //         lat: 19.21,
+    //         lng: 72.1));
+    // homeController.addIncome(
+    //     income: Income(Date: DateTime(2022), amount: 100, Source: "Mom"));
     return SafeArea(
       child: SingleChildScrollView(
         child: SizedBox(
@@ -53,7 +65,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ),
                   children: [
                     TextSpan(
-                      text: 'Het!',
+                      text: homeController.currentUser.name,
                       style: GoogleFonts.poppins(
                         fontSize: 28,
                         fontWeight: FontWeight.w700,

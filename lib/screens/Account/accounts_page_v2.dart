@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/models/account.dart';
 import 'package:flutterati_codeshastra/models/expense.dart';
+import 'package:flutterati_codeshastra/models/income.dart';
 import 'package:flutterati_codeshastra/screens/Account/widgets/account_card.dart';
-import 'package:flutterati_codeshastra/screens/Account/widgets/account_card_v2.dart';
+
+import 'package:flutterati_codeshastra/screens/Account/widgets/credit_widget.dart';
+import 'package:flutterati_codeshastra/screens/Account/widgets/debit_widget.dart';
 import 'package:flutterati_codeshastra/util/lava/lava_clock.dart';
 
 class AccountsPage extends StatelessWidget {
@@ -13,7 +16,17 @@ class AccountsPage extends StatelessWidget {
   });
 
   final List<Account> accounts;
-  final List<Expense> expenses = [];
+  final List<Expense> expenses = [
+    Expense(
+        time: DateTime(2023),
+        amount: 263,
+        category: "Food",
+        lat: 23.74,
+        lng: 45.102)
+  ];
+  final List<Income> incomes = [
+    Income(Source: "Mom", amount: 120, Date: DateTime(2023))
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,23 +45,25 @@ class AccountsPage extends StatelessWidget {
           LavaAnimation(
             child: AspectRatio(
               aspectRatio: 16 / 10,
-              child: ListView.builder(
-                padding: const EdgeInsets.only(bottom: 124),
+              child: PageView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
+                padEnds: true,
+                pageSnapping: true,
                 itemCount: accounts.length,
                 itemBuilder: (context, index) {
                   return MobileAccountCard(
-                    totalBalance: "zxcs",
                     cardHolder: "Vatsal Shah",
                     bankName: "Bank Of Baroda",
-                    income: "\u20B9 6789",
-                    expense: "\u20B9 789",
                   );
                 },
               ),
             ),
           ),
+          DebitWidget(
+            total: 896.452,
+            expenses: expenses,
+          ),
+          CreditWidget(total: 452)
         ],
       ),
     );
