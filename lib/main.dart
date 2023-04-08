@@ -5,8 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/screens/Auth/auth.dart';
 import 'package:flutterati_codeshastra/screens/Onboarding/intro_page_1.dart';
-import 'package:flutterati_codeshastra/screens/Profile/login.dart';
-import 'package:flutterati_codeshastra/screens/Profile/register.dart';
+import 'package:flutterati_codeshastra/screens/Auth/login.dart';
+import 'package:flutterati_codeshastra/screens/Auth/register.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
