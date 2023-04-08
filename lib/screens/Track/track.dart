@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterati_codeshastra/screens/MapScreen/map_screen.dart';
 
 class Tracking extends StatefulWidget {
   const Tracking({super.key});
@@ -11,7 +12,14 @@ class _TrackingState extends State<Tracking> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('tracking'),
+      body: Container(
+
+        child: Placeholder(),
+      ),
     );
   }
 }
+
+
+
+

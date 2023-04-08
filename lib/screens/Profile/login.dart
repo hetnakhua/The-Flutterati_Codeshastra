@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // logo
                 Padding(
                   padding: const EdgeInsets.fromLTRB(24, 0, 48, 0),
-                  child: Image.asset('assets/spark logo rect.png'),
+                  child: Image.asset('assets/SpendSense logo sq.png'),
                 ),
                 SizedBox(height: 60),
 
@@ -42,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 40,
                 ),
+
                 singInUp(context, true, () {
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
@@ -85,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         Text(
           "Do not have an account? ",
-          style: TextStyle(color: black),
+          // style: TextStyle(color: black),
         ),
         GestureDetector(
           onTap: () {

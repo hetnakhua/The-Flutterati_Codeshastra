@@ -41,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 // logo
                 Padding(
                   padding: const EdgeInsets.fromLTRB(24, 0, 48, 0),
-                  child: Image.asset('assets/spark logo rect.png'),
+                  child: Image.asset('assets/SpendSense logo sq.png', scale: 1.4),
                 ),
                 SizedBox(height: 40),
 
@@ -49,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 inputText('Email', 'eg: hetnakhua@gmail.com', _email, false),
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    // style: TextStyle(color: Colors.black, fontSize: 16),
                     children: [
                       TextSpan(
                         text: 'Mobile',
@@ -73,11 +73,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+                      borderSide: BorderSide(color: black),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: black),
+                      borderSide: BorderSide(color: white),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     hintText: 'eg: 1234567890',
@@ -89,7 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 inputText('Location', 'eg: India', _loc, false),
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    // style: TextStyle(color: Colors.black, fontSize: 16),
                     children: [
                       TextSpan(
                         text: 'Age',
@@ -113,11 +113,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+                      borderSide: BorderSide(color: black),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: black),
+                      borderSide: BorderSide(color: white),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     hintText: 'eg: 18',
@@ -183,7 +183,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       children: [
         Text(
           "Already have an account? ",
-          style: TextStyle(color: black),
+          // style: TextStyle(color: black),
         ),
         GestureDetector(
           onTap: () {

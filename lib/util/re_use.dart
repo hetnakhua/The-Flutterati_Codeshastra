@@ -9,7 +9,7 @@ GestureDetector singInUp(BuildContext context, bool isLogin, Function clickMe) {
     child: Container(
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: black,
+        color: midnightGreenLight,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Center(
@@ -34,7 +34,7 @@ Column inputText(String text, String hintText, TextEditingController controller,
       // heading
       RichText(
         text: TextSpan(
-          style: TextStyle(color: Colors.black, fontSize: 16),
+          // style: TextStyle(color: Colors.black, fontSize: 16),
           children: [
             TextSpan(
               text: '$text ',
@@ -58,11 +58,11 @@ Column inputText(String text, String hintText, TextEditingController controller,
         obscureText: obscT,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: black),
             borderRadius: BorderRadius.circular(12),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: black),
+            borderSide: BorderSide(color: white),
             borderRadius: BorderRadius.circular(12),
           ),
           hintText: '$hintText',

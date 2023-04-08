@@ -30,9 +30,9 @@ class _MyNavbarState extends State<MyNavbar> {
     return Scaffold(
         body: SafeArea(child: _widgetOptions[_selectedIndex]),
         bottomNavigationBar: CustomLineIndicatorBottomNavbar(
-          selectedColor: darkBlue,
-          unSelectedColor: Colors.black26,
-          backgroundColor: Colors.white,
+          selectedColor: midnightGreenLight,
+          unSelectedColor: disabledGrey,
+          backgroundColor: raisinBlack.withOpacity(0.1),
           currentIndex: _selectedIndex,
           unselectedIconSize: 25,
           selectedIconSize: 30,
