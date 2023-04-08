@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/screens/Home/home.dart';
 
 import 'package:flutterati_codeshastra/screens/Onboarding/intro_page_1.dart';
+import 'package:flutterati_codeshastra/util/navbar.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -19,7 +20,7 @@ class _AuthPageState extends State<AuthPage> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return const Home();
+            return const MyNavbar();
           } else {
             return const IntroPage1();
           }
