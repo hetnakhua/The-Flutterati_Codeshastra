@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutterati_codeshastra/screens/login.dart';
-import 'package:flutterati_codeshastra/screens/register.dart';
+import 'package:flutterati_codeshastra/screens/Onboarding/intro_page_1.dart';
+import 'package:flutterati_codeshastra/screens/Profile/login.dart';
+import 'package:flutterati_codeshastra/screens/Profile/register.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/login',
       routes: {
+        '/intro': (context) => const IntroPage1(),
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
       },

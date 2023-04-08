@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutterati_codeshastra/screens/home.dart';
-import 'package:flutterati_codeshastra/screens/login.dart';
+import 'package:flutterati_codeshastra/screens/Home/home.dart';
+import 'package:flutterati_codeshastra/screens/Profile/login.dart';
 import 'package:flutterati_codeshastra/services/database.dart';
 import 'package:flutterati_codeshastra/util/re_use.dart';
 
-import '../../constants/colors.dart';
+import '../../../constants/colors.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);

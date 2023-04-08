@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
-import 'package:flutterati_codeshastra/screens/home.dart';
-import 'package:flutterati_codeshastra/screens/register.dart';
+import 'package:flutterati_codeshastra/screens/Home/home.dart';
+import 'package:flutterati_codeshastra/screens/Profile/register.dart';
 import 'package:flutterati_codeshastra/util/re_use.dart';
 
 class LoginScreen extends StatefulWidget {
