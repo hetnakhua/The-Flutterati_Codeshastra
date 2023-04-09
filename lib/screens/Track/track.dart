@@ -67,6 +67,9 @@ class _TrackingState extends State<Tracking>
         lng: 45.03),
   ];
 
+  TextEditingController _category = TextEditingController();
+  TextEditingController _amount = TextEditingController();
+
   final _pageController = PageController();
 
   @override
@@ -109,7 +112,7 @@ class _TrackingState extends State<Tracking>
                     height: 120,
                     child: Row(
                       children: [
-                        SizedBox(width: 24),
+                        SizedBox(width: 12),
                         StreamBuilder(
                             stream: homeController.getUserExpenseDetails(),
                             builder: (context, snapshot) {
@@ -128,30 +131,67 @@ class _TrackingState extends State<Tracking>
                                   itemBuilder: (context, index) {
                                     if (index == 0) {
                                       return GestureDetector(
-                                        onTap: () {},
-                                        child: DottedBorder(
-                                          borderPadding:
-                                              EdgeInsets.only(right: 12),
-                                          borderType: BorderType.RRect,
-                                          dashPattern: [3, 3],
-                                          color: midnightGreenLight,
-                                          strokeWidth: 3,
-                                          radius: Radius.circular(16),
-                                          child: Container(
-                                            width: 100,
-                                            child: Center(
-                                              child: Icon(
-                                                Icons
-                                                    .add_circle_outline_outlined,
-                                                size: 36,
+                                        onTap: () {
+                                          showModalBottomSheet(
+                                              context: context,
+                                              builder: (context) {
+                                                return Container(
+                                                  height: 400,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 24,
+                                                      vertical: 24),
+                                                  decoration: BoxDecoration(
+                                                    color: black,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            16),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      inputText(
+                                                          'Category',
+                                                          'eg: Food',
+                                                          _category,
+                                                          false),
+                                                      inputText(
+                                                          'Amount',
+                                                          'eg: 2000',
+                                                          _amount,
+                                                          false),
+                                                      submit(context, () {
+                                                        Navigator.pop(context);
+                                                      }),
+                                                    ],
+                                                  ),
+                                                );
+                                              });
+                                        },
+                                        child: Row(
+                                          children: [
+                                            DottedBorder(
+                                              borderType: BorderType.RRect,
+                                              dashPattern: [3, 3],
+                                              color: midnightGreenLight,
+                                              strokeWidth: 3,
+                                              radius: Radius.circular(16),
+                                              child: Container(
+                                                width: 100,
+                                                child: Center(
+                                                  child: Icon(
+                                                    Icons
+                                                        .add_circle_outline_outlined,
+                                                    size: 36,
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
+                                            SizedBox(width: 16),
+                                          ],
                                         ),
                                       );
                                     }
                                     return Container(
-                                      margin: EdgeInsets.only(right: 12),
+                                      margin: EdgeInsets.only(right: 16),
                                       width: 100,
                                       height: 120,
                                       decoration: BoxDecoration(
@@ -207,7 +247,7 @@ class _TrackingState extends State<Tracking>
                                 ),
                               );
                             }),
-                        SizedBox(width: 24),
+                        SizedBox(width: 12),
                       ],
                     ),
                   ),

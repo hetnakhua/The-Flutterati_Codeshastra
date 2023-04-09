@@ -298,3 +298,28 @@ Container investNowPage(BuildContext context, int pg) {
     child: Text('page $pg'),
   );
 }
+
+GestureDetector submit(BuildContext context, Function clickMe) {
+  return GestureDetector(
+    onTap: () {
+      clickMe();
+    },
+    child: Container(
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: midnightGreenLight,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Center(
+        child: Text(
+          'Submit',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+      ),
+    ),
+  );
+}
