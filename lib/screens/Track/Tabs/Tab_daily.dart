@@ -6,21 +6,10 @@ class TabDaily extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // list of weekly expense
-    List<double> weeklySummary = [
-      42.42,
-      10.9,
-      4.70,
-      56.32,
-      16.19,
-      32.89,
-      13.03,
-    ];
-    return Column(
-      children: [
-        SizedBox(height: 30),
-        SizedBox(height: 200, child: MyBarGraph(weeklySummary: weeklySummary,)),
-      ],
+    return Container(
+      child: Text(
+        'Daily',
+      ),
     );
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/screens/Home/home.dart';
+import 'package:flutterati_codeshastra/screens/Profile/heat_map.dart';
 import 'package:flutterati_codeshastra/util/navbar.dart';
+
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -92,6 +94,8 @@ class _ProfileState extends State<Profile> {
               ),
 
               SizedBox(height: 40),
+
+              MyHeatMap(),
         ],
       ),
     );
