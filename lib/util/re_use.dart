@@ -126,8 +126,8 @@ Container tabsContainer(
           child: TabBarView(
             controller: tabController,
             children: [
-              TabDaily(),
               TabWeekly(),
+              TabDaily(),
             ],
           ),
         )
