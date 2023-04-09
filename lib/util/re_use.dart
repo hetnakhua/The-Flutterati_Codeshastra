@@ -285,3 +285,16 @@ Widget balanceCard(BuildContext context) {
         return Container();
       });
 }
+
+Container investNowPage(BuildContext context, int pg) {
+  return Container(
+    padding: EdgeInsets.all(16),
+    width: 200,
+    height: 150,
+    decoration: BoxDecoration(
+      color: outerSpaceGrey,
+      borderRadius: BorderRadius.circular(16),
+    ),
+    child: Text('page $pg'),
+  );
+}
