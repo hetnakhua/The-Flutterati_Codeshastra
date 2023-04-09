@@ -17,9 +17,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   HomeController homeController = Get.put(HomeController());
   List<String> top3 = [
-    'I',
-    'Love',
-    'Myself',
+    'Jay',
+    'Divya',
+    'Shreya',
   ];
   List<String> userList = [
     'Het',

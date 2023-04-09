@@ -37,6 +37,7 @@ GestureDetector singInUp(BuildContext context, bool isLogin, Function clickMe) {
 
 Column inputText(String text, String hintText, TextEditingController controller,
     bool obscT) {
+  HomeController homeController = Get.put(HomeController());
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -63,6 +64,8 @@ Column inputText(String text, String hintText, TextEditingController controller,
       SizedBox(height: 8),
       // textfield
       TextField(
+        keyboardType:
+            hintText == "Amount" ? TextInputType.number : TextInputType.text,
         controller: controller,
         obscureText: obscT,
         decoration: InputDecoration(
@@ -312,10 +315,25 @@ Container investNowPage(BuildContext context, int pg) {
   );
 }
 
-GestureDetector submit(BuildContext context, Function clickMe) {
+GestureDetector submit(BuildContext context, String category, String amount) {
+  HomeController homeController = Get.put(HomeController());
   return GestureDetector(
     onTap: () {
-      clickMe();
+      showDialog(
+          context: context,
+          builder: (context) => Center(
+                child: CircularProgressIndicator(),
+              ));
+      Expense expense = Expense(
+          time: DateTime.now(),
+          amount: int.parse(amount),
+          category: category,
+          lat: 19.2,
+          lng: 72.1023);
+      homeController.addExpense(expense: expense);
+
+      Navigator.pop(context);
+      Navigator.pop(context);
     },
     child: Container(
       padding: EdgeInsets.all(20),

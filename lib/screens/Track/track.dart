@@ -148,6 +148,7 @@ class _TrackingState extends State<Tracking>
                                                   ),
                                                   child: Column(
                                                     children: [
+                                                      
                                                       inputText(
                                                           'Category',
                                                           'eg: Food',
@@ -158,9 +159,11 @@ class _TrackingState extends State<Tracking>
                                                           'eg: 2000',
                                                           _amount,
                                                           false),
-                                                      submit(context, () {
-                                                        Navigator.pop(context);
-                                                      }),
+                                                      submit(
+                                                          context,
+                                                          _category.text.trim(),
+                                                          _amount.text
+                                                              ),
                                                     ],
                                                   ),
                                                 );
