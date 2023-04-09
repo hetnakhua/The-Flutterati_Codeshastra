@@ -50,8 +50,9 @@ dependencies:
 
   custom_line_indicator_bottom_navbar: ^0.0.8
   dotted_border: ^2.0.0+3
-  fl_chart:
+  fl_chart: ^0.60.0
   smooth_page_indicator: ^1.0.1
+  flutter_heatmap_calendar: ^1.0.5
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../constants/colors.dart';
+import 'package:flutterati_codeshastra/util/re_use.dart';
 
 class ForumDetailPage extends StatefulWidget {
   @override
@@ -53,16 +54,38 @@ class _ForumDetailPageState extends State<ForumDetailPage> {
         )
     );
 
+    TextEditingController _comment = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
       ),
-      body: new Column(
+      bottomSheet: Container(
+        padding: EdgeInsets.only(bottom: 5),
+        child: TextField(
+          controller: _comment,
+          obscureText: false,
+          decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: black),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: white),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            hintText: 'Comment',
+            fillColor: Colors.grey[150],
+            filled: true,
+          ),
+        ),
+      ),
+      body: Column(
         children: <Widget>[
           questionSection,
-          new Expanded(
-              child: new Padding(
+          Expanded(
+              child: Padding(
                 padding: const EdgeInsets.only(bottom: 20.0),
                 child: responses,
               ))
@@ -90,7 +113,7 @@ class ForumPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      margin: const EdgeInsets.all(5.0),
+      margin: const EdgeInsets.only(top: 5.0, right: 5, left: 5, bottom: 15),
       decoration: new BoxDecoration(
         color: outerSpaceGrey,
         borderRadius: const BorderRadius.all(const Radius.circular(20.0)),

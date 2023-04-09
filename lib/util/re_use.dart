@@ -92,7 +92,7 @@ Column inputText(String text, String hintText, TextEditingController controller,
 Container tabsContainer(
     BuildContext context, TabController tabController, List<MyTab> myTabs) {
   return Container(
-    height: 240, // MediaQuery.of(context).size.height,
+    height: 300, // MediaQuery.of(context).size.height,
     // color: pink,
     child: Column(
       children: [
@@ -302,7 +302,7 @@ Widget balanceCard(BuildContext context) {
       });
 }
 
-Container investNowPage(BuildContext context, int pg) {
+Container investNowPage(BuildContext context, int pg, String topic) {
   return Container(
     padding: EdgeInsets.all(16),
     width: 200,
@@ -311,7 +311,14 @@ Container investNowPage(BuildContext context, int pg) {
       color: outerSpaceGrey,
       borderRadius: BorderRadius.circular(16),
     ),
-    child: Text('page $pg'),
+    child: Text(
+      topic,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
   );
 }
 

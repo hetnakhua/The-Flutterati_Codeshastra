@@ -175,7 +175,7 @@ class _TrackingState extends State<Tracking>
                                               borderType: BorderType.RRect,
                                               dashPattern: [3, 3],
                                               color: midnightGreenLight,
-                                              strokeWidth: 3,
+                                              strokeWidth: 4,
                                               radius: Radius.circular(16),
                                               child: Container(
                                                 width: 100,
@@ -265,10 +265,9 @@ class _TrackingState extends State<Tracking>
                     child: PageView(
                       controller: _pageController,
                       children: [
-                        investNowPage(context, 1),
-                        investNowPage(context, 2),
-                        investNowPage(context, 3),
-                        investNowPage(context, 4),
+                        investNowPage(context, 1, 'stock'),
+                        investNowPage(context, 2, 'FD'),
+                        investNowPage(context, 3, 'Equity'),
                       ],
                     ),
                   ),
@@ -278,7 +277,7 @@ class _TrackingState extends State<Tracking>
                     children: [
                       SmoothPageIndicator(
                         controller: _pageController,
-                        count: 4,
+                        count: 3,
                         effect: ExpandingDotsEffect(
                           activeDotColor: midnightGreenLight,
                           dotColor: disabledGrey,
