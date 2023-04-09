@@ -1,5 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterati_codeshastra/constants/colors.dart';
+import 'package:flutterati_codeshastra/models/expense.dart';
+import 'package:flutterati_codeshastra/models/income.dart';
+import 'package:flutterati_codeshastra/screens/ChatScreen/chat_list_screen.dart';
+import 'package:flutterati_codeshastra/screens/Home/Tabs/Tab_daily.dart';
+import 'package:flutterati_codeshastra/screens/Home/Tabs/Tab_weekly.dart';
+import 'package:flutterati_codeshastra/screens/Auth/login.dart';
+import 'package:flutterati_codeshastra/screens/Home/controller/home_controller.dart';
+import 'package:flutterati_codeshastra/util/re_use.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../util/my_tab.dart';
 
@@ -11,6 +22,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  final chat = [
+    Chat(id: "1", name: "Abhishek Sinha", lastMessage: "start investing now!!"),
+    Chat(id: "2", name: "Vatsal Shah", lastMessage: "Busy"),
+    Chat(id: "3", name: "Het Nakhua", lastMessage: "talk to you latter"),
+  ];
+  HomeController homeController = Get.put(HomeController());
   // my tabs
   List<Widget> myTabs = const [
     // donut tab
@@ -40,11 +57,146 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Text('home'),
-        ],
+    // homeController.addExpense(
+    //     expense: Expense(
+    //         time: DateTime(2022),
+    //         amount: 100,
+    //         category: "Shopping",
+    //         lat: 19.21,
+    //         lng: 72.1));
+    // homeController.addIncome(
+    //     income: Income(Date: DateTime(2022), amount: 100, Source: "Mom"));
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: RichText(
+                text: TextSpan(
+                  text: 'Hey ',
+                  style: GoogleFonts.poppins(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w400,
+                    // color: Colors.black,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: homeController.currentUser.name,
+                      style: GoogleFonts.poppins(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                        // color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              automaticallyImplyLeading: false,
+              leading: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                child: GestureDetector(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/profile avatar.png'),
+                          fit: BoxFit.cover,
+                        ),
+                        shape: BoxShape.circle),
+                  ),
+                  onTap: () {},
+                ),
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut().then((value) {
+                      print("Signed out");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (builder) => LoginScreen()));
+                    });
+                  },
+                  icon: Icon(
+                    Icons.logout_rounded,
+                    color: white,
+                    size: 30,
+                  ),
+                ),
+                IconButton(onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatListScreen(chats: chat)));
+                }, icon: Icon(Icons.message, color: Colors.white,))
+              ],
+            ),
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Text('hiii'),
+                  SizedBox(height: 20),
+
+                  balanceCard(context),
+
+                  Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 50),
+                        Container(
+                          // height: 50,
+                          width: MediaQuery.of(context).size.height,
+                          decoration: BoxDecoration(
+                              color: outerSpaceGrey,
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8),
+                                child: TabBar(
+                                  unselectedLabelColor: Colors.white,
+                                  labelColor: Colors.black,
+                                  indicatorColor: Colors.white,
+                                  indicatorWeight: 2,
+                                  indicator: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  controller: tabController,
+                                  tabs: [
+                                    Tab(
+                                      text: 'Daily',
+                                    ),
+                                    Tab(
+                                      text: 'Weekly',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: TabBarView(
+                            controller: tabController,
+                            children: [
+                              TabDaily(),
+                              TabWeekly(),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

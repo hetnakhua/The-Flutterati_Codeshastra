@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutterati_codeshastra">
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS"/>
    <application
         android:label="flutterati_codeshastra"
         android:name="${applicationName}"
@@ -40,4 +41,7 @@
        <meta-data android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyDfk0h3OaNrAb5F17sZiA9dckWQzd9jCPc"/>
     </application>
+
+
+
 </manifest>

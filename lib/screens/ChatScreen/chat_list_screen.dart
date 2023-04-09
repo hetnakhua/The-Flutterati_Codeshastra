@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterati_codeshastra/screens/ChatScreen/chat_screen.dart';
 
 
 class Chat {
@@ -125,6 +126,12 @@ class ChatListScreen extends StatelessWidget {
             trailing: Text('1:30 PM'), // display last message timestamp
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatBotScreen()));
+        },
+        child: Icon(Icons.message_outlined),
       ),
     );
   }

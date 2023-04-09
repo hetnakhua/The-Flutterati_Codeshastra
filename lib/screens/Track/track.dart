@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/screens/MapScreen/map_screen.dart';
+import 'package:flutterati_codeshastra/screens/WebView/UpStock.dart';
 
 class Tracking extends StatefulWidget {
   const Tracking({super.key});
@@ -14,7 +15,7 @@ class _TrackingState extends State<Tracking> {
     return Scaffold(
       body: Container(
 
-        child: MapScreen(),
+        child: GrowWebView(),
       ),
     );
   }

@@ -41,6 +41,10 @@ dependencies:
   google_fonts:
   get_it:
   glassmorphism:
+  readsms:
+  get:
+
+  telephony:
 
 
   cloud_firestore: ^4.5.0
@@ -48,6 +52,8 @@ dependencies:
   custom_line_indicator_bottom_navbar: ^0.0.8
   google_maps_flutter: ^2.2.5
   custom_info_window:
+  dialog_flowtter:
+  webview_flutter: ^2.0.13
 
 
 
