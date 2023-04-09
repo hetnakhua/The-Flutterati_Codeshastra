@@ -37,7 +37,7 @@ GestureDetector singInUp(BuildContext context, bool isLogin, Function clickMe) {
 
 Column inputText(String text, String hintText, TextEditingController controller,
     bool obscT) {
-  HomeController homeController = Get.put(HomeController());
+
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
