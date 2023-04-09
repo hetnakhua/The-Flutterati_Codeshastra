@@ -33,7 +33,7 @@ class _MyNavbarState extends State<MyNavbar> {
       ],
     ),
     Loan(),
-    SmsScreen(),
+    Tracking(),
     ForumPage(),
   ];
 

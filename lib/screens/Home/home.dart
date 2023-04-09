@@ -55,26 +55,33 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: RichText(
-                text: TextSpan(
-                  text: 'Hey ',
-                  style: GoogleFonts.poppins(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w400,
-                    // color: Colors.black,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: homeController.currentUser.name,
-                      style: GoogleFonts.poppins(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w700,
-                        // color: Colors.black,
+              title: FutureBuilder(
+                  future: homeController.getCurrentUserData(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Container();
+                    }
+                    return RichText(
+                      text: TextSpan(
+                        text: 'Hey ',
+                        style: GoogleFonts.poppins(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w400,
+                          // color: Colors.black,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: homeController.currentUser.name,
+                            style: GoogleFonts.poppins(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w700,
+                              // color: Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-              ),
+                    );
+                  }),
               automaticallyImplyLeading: false,
               leading: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
