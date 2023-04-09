@@ -35,7 +35,7 @@ class DebtItemWidget extends StatelessWidget {
                       color: midnightGreenLight, fontWeight: FontWeight.bold),
                 ),
                 trailing: Text(
-                  "\u20B9" + (debt.totalAmount - 100).toString(),
+                  "\u20B9" + (debt.totalAmount).toString(),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(),
                 ),
               ),

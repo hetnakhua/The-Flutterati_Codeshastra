@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterati_codeshastra/models/expense.dart';
 import 'package:flutterati_codeshastra/models/income.dart';
+import 'package:flutterati_codeshastra/models/loan.dart' as L;
 import 'package:flutterati_codeshastra/models/user.dart' as User;
 
 import 'package:get/get.dart';
@@ -49,6 +50,16 @@ class HomeController extends GetxController {
         .snapshots()
         .map((snapshot) =>
             snapshot.docs.map((doc) => Expense.fromMap(doc.data())).toList());
+  }
+
+  Stream<List<L.Loan>> getUserLoanDetails() {
+    return FirebaseFirestore.instance
+        .collection("users")
+        .doc(uid)
+        .collection("Loans")
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => L.Loan.fromMap(doc.data())).toList());
   }
 
   getLeaderboard() async {
@@ -124,6 +135,24 @@ class HomeController extends GetxController {
           .collection('users')
           .doc(docid)
           .update(income.toMap());
+    }
+  }
+
+  addLoan({required L.Loan loan, String? docid}) async {
+    if (docid == null) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .collection("Loans")
+          .doc()
+          .set(loan.toMap());
+    } else {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .collection("Loans")
+          .doc(docid)
+          .update(loan.toMap());
     }
   }
 }
