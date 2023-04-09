@@ -20,8 +20,8 @@ class _LoanState extends State<Loan> {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          "Loans",
-          style: TextStyle(color: white, fontSize: 28),
+          "Loan",
+          style: TextStyle(color: white),
         ),
       ),
       body: ListView(
