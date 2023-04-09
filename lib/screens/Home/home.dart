@@ -35,6 +35,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     'How to tax save?',
     'Zero income tax 11 lakh salary',
   ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    homeController.getLeaderboard();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

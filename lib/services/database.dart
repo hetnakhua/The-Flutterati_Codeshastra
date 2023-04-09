@@ -11,6 +11,7 @@ Future addUser(String name, String email, String id, String collegeName,
     id: id,
     collegeName: collegeName,
     dateOfBirth: dateOfBirth,
+    userScore: 0.5,
   );
   final json = user.toJson();
 
