@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,14 @@ import 'package:flutterati_codeshastra/screens/Auth/register.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
+  Stream<List<String>> s = Stream.fromIterable(
+    [
+      ['Abhishek', 'Sinha'],
+      ['Vatsal', 'Shah']
+    ],
+  );
+  List<String> st = await s.expand((element) => element).toList();
+  log(st[0]);
   WidgetsFlutterBinding.ensureInitialized();
   FirebaseApp firebaseapp = await Firebase.initializeApp();
   runApp(MyApp());

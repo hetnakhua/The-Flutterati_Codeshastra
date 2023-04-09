@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/screens/Auth/login.dart';
 import 'package:flutterati_codeshastra/screens/Home/controller/home_controller.dart';
+import 'package:flutterati_codeshastra/screens/Profile/profile.dart';
 import 'package:flutterati_codeshastra/util/re_use.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,6 +36,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     'How to tax save?',
     'Zero income tax 11 lakh salary',
   ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    homeController.getLeaderboard();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +101,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         ),
                         shape: BoxShape.circle),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (builder) => Profile()));
+                  },
                 ),
               ),
               actions: [

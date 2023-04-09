@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
+import 'package:flutterati_codeshastra/models/expense.dart';
 import 'package:flutterati_codeshastra/screens/Track/Tabs/Tab_daily.dart';
 import 'package:flutterati_codeshastra/screens/Track/Tabs/Tab_weekly.dart';
 import 'package:flutterati_codeshastra/util/my_tab.dart';
@@ -88,7 +89,7 @@ Column inputText(String text, String hintText, TextEditingController controller,
 Container tabsContainer(
     BuildContext context, TabController tabController, List<MyTab> myTabs) {
   return Container(
-    height: 240, // MediaQuery.of(context).size.height,
+    height: 300, // MediaQuery.of(context).size.height,
     // color: pink,
     child: Column(
       children: [
@@ -197,88 +198,100 @@ Widget balanceCard(BuildContext context) {
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Total balance',
-                    style: GoogleFonts.poppins(
-                      color: Colors.white60,
-                    ),
-                  ),
-                  Text(
-                    '\$62,845.00',
-                    style: GoogleFonts.poppins(
-                        // color: Colors.white60,
-                        fontSize: 32,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(height: 16),
-                  Text(
-                    'This month',
-                    style: GoogleFonts.poppins(
-                      color: Colors.white60,
-                    ),
-                  ),
-                  SizedBox(height: 4),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_drop_down_sharp,
-                                color: Colors.green,
-                              ),
-                              SizedBox(width: 2),
-                              Text(
-                                'Credit',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white60,
-                                  fontSize: 12,
+              child: StreamBuilder(
+                  stream: homeController.getUserExpenseDetails(),
+                  builder: (context, snapshot2) {
+                    if (snapshot2.connectionState == ConnectionState.waiting) {
+                      return Container();
+                    }
+                    List<Expense> expense = snapshot2.data!;
+                    int totalExpense = 0;
+                    for (int i = 0; i < snapshot2.data!.length; i++) {
+                      totalExpense += expense[i].amount;
+                    }
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Total balance',
+                          style: GoogleFonts.poppins(
+                            color: Colors.white60,
+                          ),
+                        ),
+                        Text(
+                          "\u20B9" + (totalIncome - totalExpense).toString(),
+                          style: GoogleFonts.poppins(
+                              // color: Colors.white60,
+                              fontSize: 32,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'This month',
+                          style: GoogleFonts.poppins(
+                            color: Colors.white60,
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_drop_down_sharp,
+                                      color: Colors.green,
+                                    ),
+                                    SizedBox(width: 2),
+                                    Text(
+                                      'Credit',
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.white60,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            '+\u20B9${totalIncome}',
-                            style: GoogleFonts.poppins(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 60),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_drop_up_sharp,
-                                color: Colors.red,
-                              ),
-                              SizedBox(width: 2),
-                              Text(
-                                'Debit',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white60,
-                                  fontSize: 12,
+                                Text(
+                                  '+\u20B9${totalIncome}',
+                                  style: GoogleFonts.poppins(fontSize: 16),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            '-\$2739.00',
-                            style: GoogleFonts.poppins(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                ],
-              ),
+                              ],
+                            ),
+                            SizedBox(width: 60),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_drop_up_sharp,
+                                      color: Colors.red,
+                                    ),
+                                    SizedBox(width: 2),
+                                    Text(
+                                      'Debit',
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.white60,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  '-\u20B9${totalExpense}',
+                                  style: GoogleFonts.poppins(fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    );
+                  }),
             ),
           );
         }
@@ -286,7 +299,7 @@ Widget balanceCard(BuildContext context) {
       });
 }
 
-Container investNowPage(BuildContext context, int pg) {
+Container investNowPage(BuildContext context, int pg, String topic) {
   return Container(
     padding: EdgeInsets.all(16),
     width: 200,
@@ -295,7 +308,14 @@ Container investNowPage(BuildContext context, int pg) {
       color: outerSpaceGrey,
       borderRadius: BorderRadius.circular(16),
     ),
-    child: Text('page $pg'),
+    child: Text(
+      topic,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
   );
 }
 
