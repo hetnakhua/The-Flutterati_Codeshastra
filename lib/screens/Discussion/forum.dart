@@ -4,6 +4,7 @@ import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/models/forumpost.dart';
 import 'package:flutterati_codeshastra/screens/Auth/login.dart';
 import 'package:flutterati_codeshastra/screens/Discussion/add_post.dart';
+import 'package:flutterati_codeshastra/screens/Discussion/post.dart';
 import 'package:flutterati_codeshastra/util/re_use.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -68,10 +69,17 @@ class _ForumPageState extends State<ForumPage>
                 style: TextStyle(color: white),
               ),
             ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: FloatingActionButton(
+              elevation: 5,
+              child: Icon(Icons.add),
+                onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (builder) => AddPost()));
+            }),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
@@ -162,29 +170,6 @@ class TabCategory1 extends StatelessWidget {
           SizedBox(
             height: 100,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (builder) => AddPost()));
-            },
-            child: Container(
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: midnightGreenLight,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text(
-                  "Add Question",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );
@@ -215,29 +200,6 @@ class TabCategory2 extends StatelessWidget {
           SizedBox(
             height: 100,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (builder) => AddPost()));
-            },
-            child: Container(
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: midnightGreenLight,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text(
-                  "Add Question",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );
@@ -268,29 +230,6 @@ class TabCategory3 extends StatelessWidget {
           SizedBox(
             height: 100,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (builder) => AddPost()));
-            },
-            child: Container(
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: midnightGreenLight,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text(
-                  "Add Question",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );
@@ -325,7 +264,10 @@ class PostTile extends StatelessWidget {
             ],
           ),
           Spacer(),
-          IconButton(onPressed: () {}, icon: Icon(Icons.chat))
+          IconButton(onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (builder) => ForumDetailPage()));
+          }, icon: Icon(Icons.chat))
         ]));
   }
 }
