@@ -19,14 +19,13 @@ class _TrackingState extends State<Tracking>
     with SingleTickerProviderStateMixin {
   // my tabs
   List<MyTab> myTabs = const [
-    // daily tab
-    MyTab(
-      text: 'Daily',
-    ),
-
     // weekly tab
     MyTab(
       text: 'Weekly',
+    ),
+    // daily tab
+    MyTab(
+      text: 'Daily',
     ),
   ];
 
