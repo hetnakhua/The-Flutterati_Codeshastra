@@ -7,8 +7,9 @@ class TabDaily extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Text(
-        'Daily',
+        'Dily',
       ),
+      height: 100,
     );
   }
 }

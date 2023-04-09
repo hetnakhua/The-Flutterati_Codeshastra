@@ -60,37 +60,13 @@ class _ForumPageState extends State<ForumPage>
           height: MediaQuery.of(context).size.height,
           child: Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.transparent,
+              backgroundColor: raisinBlack,
               elevation: 0,
-              title: RichText(
-                text: TextSpan(
-                  text: 'Forum',
-                  style: GoogleFonts.poppins(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w400,
-                    // color: Colors.black,
-                  ),
-                ),
+              centerTitle: true,
+              title: Text(
+                "Forum",
+                style: TextStyle(color: white),
               ),
-              automaticallyImplyLeading: false,
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut().then((value) {
-                      print("Signed out");
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (builder) => LoginScreen()));
-                    });
-                  },
-                  icon: Icon(
-                    Icons.logout_rounded,
-                    color: white,
-                    size: 30,
-                  ),
-                ),
-              ],
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -267,6 +243,7 @@ class TabCategory2 extends StatelessWidget {
     );
   }
 }
+
 class TabCategory3 extends StatelessWidget {
   TabCategory3({super.key});
 
@@ -323,7 +300,8 @@ class TabCategory3 extends StatelessWidget {
 class PostTile extends StatelessWidget {
   final String name;
   final String post;
-  const PostTile({Key? key, required this.name, required this.post}) : super(key: key);
+  const PostTile({Key? key, required this.name, required this.post})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -331,7 +309,10 @@ class PostTile extends StatelessWidget {
         // height: 100,
         padding: EdgeInsets.all(15),
         margin: EdgeInsets.all(5),
-        color: outerSpaceGrey,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: outerSpaceGrey,
+        ),
         child: Row(children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -344,9 +325,7 @@ class PostTile extends StatelessWidget {
             ],
           ),
           Spacer(),
-          IconButton(onPressed: (){},
-              icon: Icon(Icons.chat))
-        ])
-    );
+          IconButton(onPressed: () {}, icon: Icon(Icons.chat))
+        ]));
   }
 }
