@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/models/expense.dart';
 import 'package:flutterati_codeshastra/screens/Track/Tabs/Tab_daily.dart';
 import 'package:flutterati_codeshastra/screens/Track/Tabs/Tab_weekly.dart';
-import 'package:flutterati_codeshastra/screens/WebView/TradingWebVIew.dart';
-import 'package:flutterati_codeshastra/screens/WebView/fd.dart';
 import 'package:flutterati_codeshastra/util/my_tab.dart';
 
 import 'package:flutterati_codeshastra/models/income.dart';
 import 'package:flutterati_codeshastra/screens/Home/controller/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../screens/WebView/UpStock.dart';
 
 GestureDetector singInUp(BuildContext context, bool isLogin, Function clickMe) {
   return GestureDetector(
@@ -42,7 +37,7 @@ GestureDetector singInUp(BuildContext context, bool isLogin, Function clickMe) {
 
 Column inputText(String text, String hintText, TextEditingController controller,
     bool obscT) {
-  // HomeController homeController = Get.put(HomeController());
+
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -307,42 +302,21 @@ Widget balanceCard(BuildContext context) {
       });
 }
 
-GestureDetector investNowPage(BuildContext context, int pg, String topic, String img) {
-  List<Widget> _list = [
-    GrowWebView(),
-    TradeWebView(),
-    FdWebView()
-
-
-  ];
-  return GestureDetector(
-    onTap: () {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>_list[pg-1]));
-    },
-    child: Container(
-      padding: EdgeInsets.all(16),
-      width: 200,
-      height: 150,
-      decoration: BoxDecoration(
-        color: outerSpaceGrey,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-
-          Text(
-            topic,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-            ),
-
-          ),
-          SizedBox(height: 10,),
-          SvgPicture.asset(img, height: 60,)
-        ],
+Container investNowPage(BuildContext context, int pg, String topic) {
+  return Container(
+    padding: EdgeInsets.all(16),
+    width: 200,
+    height: 150,
+    decoration: BoxDecoration(
+      color: outerSpaceGrey,
+      borderRadius: BorderRadius.circular(16),
+    ),
+    child: Text(
+      topic,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
       ),
     ),
   );
