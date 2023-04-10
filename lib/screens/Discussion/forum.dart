@@ -4,6 +4,7 @@ import 'package:flutterati_codeshastra/constants/colors.dart';
 import 'package:flutterati_codeshastra/models/forumpost.dart';
 import 'package:flutterati_codeshastra/screens/Auth/login.dart';
 import 'package:flutterati_codeshastra/screens/Discussion/add_post.dart';
+import 'package:flutterati_codeshastra/screens/Discussion/post.dart';
 import 'package:flutterati_codeshastra/util/re_use.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -60,42 +61,25 @@ class _ForumPageState extends State<ForumPage>
           height: MediaQuery.of(context).size.height,
           child: Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.transparent,
+              backgroundColor: raisinBlack,
               elevation: 0,
-              title: RichText(
-                text: TextSpan(
-                  text: 'Forum',
-                  style: GoogleFonts.poppins(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w400,
-                    // color: Colors.black,
-                  ),
-                ),
+              centerTitle: true,
+              title: Text(
+                "Forum",
+                style: TextStyle(color: white),
               ),
-              automaticallyImplyLeading: false,
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut().then((value) {
-                      print("Signed out");
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (builder) => LoginScreen()));
-                    });
-                  },
-                  icon: Icon(
-                    Icons.logout_rounded,
-                    color: white,
-                    size: 30,
-                  ),
-                ),
-              ],
             ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: FloatingActionButton(
+              elevation: 5,
+              child: Icon(Icons.add),
+                onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (builder) => AddPost()));
+            }),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
@@ -186,29 +170,6 @@ class TabCategory1 extends StatelessWidget {
           SizedBox(
             height: 100,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (builder) => AddPost()));
-            },
-            child: Container(
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: midnightGreenLight,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text(
-                  "Add Question",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );
@@ -239,34 +200,12 @@ class TabCategory2 extends StatelessWidget {
           SizedBox(
             height: 100,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (builder) => AddPost()));
-            },
-            child: Container(
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: midnightGreenLight,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text(
-                  "Add Question",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );
   }
 }
+
 class TabCategory3 extends StatelessWidget {
   TabCategory3({super.key});
 
@@ -291,29 +230,6 @@ class TabCategory3 extends StatelessWidget {
           SizedBox(
             height: 100,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (builder) => AddPost()));
-            },
-            child: Container(
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: midnightGreenLight,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text(
-                  "Add Question",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );
@@ -323,7 +239,8 @@ class TabCategory3 extends StatelessWidget {
 class PostTile extends StatelessWidget {
   final String name;
   final String post;
-  const PostTile({Key? key, required this.name, required this.post}) : super(key: key);
+  const PostTile({Key? key, required this.name, required this.post})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -331,7 +248,10 @@ class PostTile extends StatelessWidget {
         // height: 100,
         padding: EdgeInsets.all(15),
         margin: EdgeInsets.all(5),
-        color: outerSpaceGrey,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: outerSpaceGrey,
+        ),
         child: Row(children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -344,9 +264,10 @@ class PostTile extends StatelessWidget {
             ],
           ),
           Spacer(),
-          IconButton(onPressed: (){},
-              icon: Icon(Icons.chat))
-        ])
-    );
+          IconButton(onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (builder) => ForumDetailPage()));
+          }, icon: Icon(Icons.chat))
+        ]));
   }
 }

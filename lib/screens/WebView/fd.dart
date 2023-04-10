@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 
-class TradeWebView extends StatefulWidget {
-  const TradeWebView({Key? key}) : super(key: key);
+class FdWebView extends StatefulWidget {
+  const FdWebView({Key? key}) : super(key: key);
 
   @override
-  State<TradeWebView> createState() => _TradeWebViewState();
+  State<FdWebView> createState() => _FdWebViewState();
 }
 
-class _TradeWebViewState extends State<TradeWebView> {
+class _FdWebViewState extends State<FdWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,7 @@ class _TradeWebViewState extends State<TradeWebView> {
         ),
         body: WebView(
           javascriptMode: JavascriptMode.unrestricted,
-          initialUrl: "https://www.tradingview.com/chart/",
+          initialUrl: "https://www.motilaloswalmf.com/tools/sip-return-calculator",
         )
     );
   }

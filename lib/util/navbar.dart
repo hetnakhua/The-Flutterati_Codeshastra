@@ -32,7 +32,7 @@ class _MyNavbarState extends State<MyNavbar> {
             initialAmount: 1253)
       ],
     ),
-    SmsScreen(),
+    Loan(),
     Tracking(),
     ForumPage(),
   ];

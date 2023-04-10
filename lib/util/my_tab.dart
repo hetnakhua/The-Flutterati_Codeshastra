@@ -7,16 +7,6 @@ class MyTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Tab(
-      height: 80,
-      child: Container(
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Text(text, style: GoogleFonts.poppins(),)
-      ),
-    );
+    return Tab(child: Text(text, style: GoogleFonts.poppins()));
   }
 }

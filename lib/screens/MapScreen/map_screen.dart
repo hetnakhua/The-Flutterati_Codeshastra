@@ -121,91 +121,96 @@ class MapScreen extends StatefulWidget {
 
     @override
     Widget build(BuildContext context) {
-      return Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Stack(
-          children: [
+      return SafeArea(
+        child:
+          Scaffold(
+            body: Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Stack(
+              children: [
 
-            GoogleMap(
-              onTap: (postions){
-                _customInfoWindowController.hideInfoWindow!();
-                setState(() {
-                  
-                });
-              },
-              initialCameraPosition: _intialpositon,
-              markers: Set.of(_markers),
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-                _customInfoWindowController.googleMapController = controller;
-              },
-            ),
-            CustomInfoWindow(
-              controller: _customInfoWindowController,
-              height: 100,
-              width: 150,
-              offset: 35,
+                GoogleMap(
+                  onTap: (postions){
+                    _customInfoWindowController.hideInfoWindow!();
+                    setState(() {
 
-
-            ),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-              child:
-              Container(
-                // color: Colors.black,
-
-                  height: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: raisinBlack,
-
-                  ),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: TextField(
-                      controller: _searchcontroller,
-                      textAlignVertical: TextAlignVertical.center,
-                      onSubmitted: (String value) async {
-                        final latlongmap = await getLatLong(value);
-                        GoogleMapController controller = await _controller
-                            .future;
-                        controller.animateCamera(CameraUpdate.newCameraPosition(
-                            CameraPosition(
-                              target: LatLng(latlongmap['lat']!.toDouble(),
-                                  latlongmap['lng']!.toDouble()),
-                              zoom: 14,
-                            )
-                        ));
-                        setState(() {
-
-                        });
-                      },
+                    });
+                  },
+                  initialCameraPosition: _intialpositon,
+                  markers: Set.of(_markers),
+                  onMapCreated: (GoogleMapController controller) {
+                    _controller.complete(controller);
+                    _customInfoWindowController.googleMapController = controller;
+                  },
+                ),
+                CustomInfoWindow(
+                  controller: _customInfoWindowController,
+                  height: 100,
+                  width: 150,
+                  offset: 35,
 
 
-                      decoration: InputDecoration(
-                        counterStyle: TextStyle(fontSize: 50),
-                        labelStyle: TextStyle(fontSize: 20),
-                        labelText: "Search Location",
+                ),
 
-                        border: InputBorder.none,
-                        prefixIcon: Icon(Icons.add_location, size: 30,),
-                        suffix: IconButton(
-                          icon: Icon(Icons.clear), onPressed: () {
-                          _searchcontroller.clear();
-                        },
-                        ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                  child:
+                  Container(
+                    // color: Colors.black,
+
+                      height: 60,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.0),
+                        color: raisinBlack,
+
                       ),
-                    ),
-                  )
-              ),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: TextField(
+                          controller: _searchcontroller,
+                          textAlignVertical: TextAlignVertical.center,
+                          onSubmitted: (String value) async {
+                            final latlongmap = await getLatLong(value);
+                            GoogleMapController controller = await _controller
+                                .future;
+                            controller.animateCamera(CameraUpdate.newCameraPosition(
+                                CameraPosition(
+                                  target: LatLng(latlongmap['lat']!.toDouble(),
+                                      latlongmap['lng']!.toDouble()),
+                                  zoom: 14,
+                                )
+                            ));
+                            setState(() {
+
+                            });
+                          },
 
 
+                          decoration: InputDecoration(
+                            counterStyle: TextStyle(fontSize: 50),
+                            labelStyle: TextStyle(fontSize: 20),
+                            labelText: "Search Location",
+
+                            border: InputBorder.none,
+                            prefixIcon: Icon(Icons.add_location, size: 30,),
+                            suffix: IconButton(
+                              icon: Icon(Icons.clear), onPressed: () {
+                              _searchcontroller.clear();
+                            },
+                            ),
+                            contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                          ),
+                        ),
+                      )
+                  ),
+
+
+                ),
+              ],
             ),
-          ],
         ),
+          ),
       );
     }
   }

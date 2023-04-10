@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../constants/colors.dart';
+import 'package:flutterati_codeshastra/util/re_use.dart';
 
 class ForumDetailPage extends StatefulWidget {
   @override
@@ -6,21 +8,21 @@ class ForumDetailPage extends StatefulWidget {
 }
 
 var ForumPostArr = [
-  new ForumPostEntry("User1", "2 Days ago", 0 , 0 , "Hello,\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-  new ForumPostEntry("User2", "23 Hours ago", 1 , 0 , "Pellentesque justo metus, finibus porttitor consequat vitae, tincidunt vitae quam. Vestibulum molestie sem diam. Nullam pretium semper tempus. Maecenas lobortis lacus nunc, id lacinia nunc imperdiet tempor. Mauris mi ipsum, finibus consectetur eleifend a, maximus eget lorem. Praesent a magna nibh. In congue sapien sed velit mattis sodales. Nam tempus pulvinar metus, in gravida elit tincidunt in. Curabitur sed sapien commodo, fringilla tortor eu, accumsan est. Proin tincidunt convallis dolor, a faucibus sapien auctor sodales. Duis vitae dapibus metus. Nulla sit amet porta ipsum, posuere tempor tortor.\n\nCurabitur mauris dolor, cursus et mi id, mattis sagittis velit. Duis eleifend mi et ante aliquam elementum. Ut feugiat diam enim, at placerat elit semper vitae. Phasellus vulputate quis ex eu dictum. Cras sapien magna, faucibus at lacus vel, faucibus viverra lorem. Phasellus quis dui tristique, ultricies velit non, cursus lectus. Suspendisse neque nisl, vestibulum non dui in, vulputate placerat elit. Sed at convallis mauris, eu blandit dolor. Vivamus suscipit iaculis erat eu condimentum. Aliquam erat volutpat. Curabitur posuere commodo arcu vel consectetur."),
-  new ForumPostEntry("User3", "2 Days ago", 5 , 0 , "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-  new ForumPostEntry("User4", "2 Days ago", 0 , 0 , "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+  ForumPostEntry("Rohan", "5 hours ago", 5 , 0 , "Hello,\n\nAs an experienced financial advisor I believe NFTs are a risky investment."),
+  ForumPostEntry("Maya", "23 Hours ago", 1 , 0 , "You can try investing in NFTs but don't spend too much money on it."),
+  ForumPostEntry("Varun", "1 day ago", 1 , 0 , "There are multiple investment options, keep a varied portfolio."),
+  ForumPostEntry("Ram", "2 days ago", 1 , 0 , "Invest in NFTs but don't take too much risk."),
 ];
 
 class _ForumDetailPageState extends State<ForumDetailPage> {
   @override
   Widget build(BuildContext context) {
-    var questionSection = new Padding(
+    var questionSection = Padding(
       padding: const EdgeInsets.all(8.0),
       child: new Column(
         children: <Widget>[
           new Text(
-            "How do I become a expert in programming as well as design ??",
+            "Should I invest in NFTs?",
             textScaleFactor: 1.5,
             style: new TextStyle(fontWeight: FontWeight.bold),
           ),
@@ -29,7 +31,7 @@ class _ForumDetailPageState extends State<ForumDetailPage> {
             child: new Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                new IconWithText(Icons.laptop_mac, "Technology", iconColor: Colors.green,),
+                new IconWithText(Icons.laptop_mac, "Investing", iconColor: Colors.green,),
                 new IconWithText(
                   Icons.check_circle,
                   "Answered",
@@ -52,15 +54,38 @@ class _ForumDetailPageState extends State<ForumDetailPage> {
         )
     );
 
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Forum 1"),
+    TextEditingController _comment = TextEditingController();
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.white,
       ),
-      body: new Column(
+      bottomSheet: Container(
+        padding: EdgeInsets.only(bottom: 5),
+        child: TextField(
+          controller: _comment,
+          obscureText: false,
+          decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: black),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: white),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            hintText: 'Comment',
+            fillColor: Colors.grey[150],
+            filled: true,
+          ),
+        ),
+      ),
+      body: Column(
         children: <Widget>[
           questionSection,
-          new Expanded(
-              child: new Padding(
+          Expanded(
+              child: Padding(
                 padding: const EdgeInsets.only(bottom: 20.0),
                 child: responses,
               ))
@@ -88,16 +113,16 @@ class ForumPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      margin: const EdgeInsets.all(5.0),
+      margin: const EdgeInsets.only(top: 5.0, right: 5, left: 5, bottom: 15),
       decoration: new BoxDecoration(
-        color: Colors.deepPurple[200],
+        color: outerSpaceGrey,
         borderRadius: const BorderRadius.all(const Radius.circular(20.0)),
       ),
       child: new Column(
         children: <Widget>[
           new Container(
             decoration: new BoxDecoration(
-              color: Colors.deepPurple[300],
+              color: outerSpaceGrey,
               borderRadius: const BorderRadius.only(
                   topLeft: const Radius.circular(20.0),
                   topRight: const Radius.circular(20.0)),
@@ -148,7 +173,7 @@ class ForumPost extends StatelessWidget {
             margin: const EdgeInsets.only(left: 2.0,right: 2.0,bottom: 2.0),
             padding: const EdgeInsets.all(8.0),
             decoration: new BoxDecoration(
-                color: Colors.grey[200],
+                color: Colors.black54,
                 borderRadius: const BorderRadius.only(bottomLeft :const Radius.circular(20.0),bottomRight :const Radius.circular(20.0))
             ),
             child: new Text(entry.text),

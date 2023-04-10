@@ -63,7 +63,7 @@ class MobileAccountCard extends StatelessWidget {
                       totalIncome += snapshot.data![i].amount;
                     }
                     return GlassmorphicContainer(
-                      height: MediaQuery.of(context).size.height * 0.26,
+                      height: MediaQuery.of(context).size.height * 0.28,
                       width: 350,
                       borderRadius: 24,
                       blur: 10,
@@ -150,7 +150,7 @@ class MobileAccountCard extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(
                               left: 16.0,
-                              bottom: 16.0,
+                              bottom: 12.0,
                               right: 16.0,
                             ),
                             child: Row(

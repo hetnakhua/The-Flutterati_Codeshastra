@@ -6,6 +6,7 @@ class User {
   final String id;
   final String collegeName;
   final String dateOfBirth;
+  double userScore;
 
   User({
     required this.name,
@@ -13,6 +14,7 @@ class User {
     required this.id,
     required this.collegeName,
     required this.dateOfBirth,
+    required this.userScore,
   });
 
   Map<String, dynamic> toJson() => {
@@ -21,6 +23,7 @@ class User {
         'id': id,
         "dateOfBirth": dateOfBirth,
         'collegeName': collegeName,
+        'userScore': userScore,
       };
 
   factory User.fromFirestore(DocumentSnapshot doc) {
@@ -30,6 +33,7 @@ class User {
         email: data['email'],
         id: data['id'],
         dateOfBirth: data['dateOfBirth'],
+        userScore: data['userScore'],
         collegeName: data['collegeName']);
   }
 }

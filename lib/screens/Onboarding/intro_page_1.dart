@@ -99,6 +99,7 @@ class _IntroPage1State extends State<IntroPage1> {
             },
             child: Text(
               "Get Started",
+              style: TextStyle(color: white),
             ),
           ),
         ),
