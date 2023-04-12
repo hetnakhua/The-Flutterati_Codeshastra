@@ -20,13 +20,13 @@ class _TrackingState extends State<Tracking>
     with SingleTickerProviderStateMixin {
   // my tabs
   List<MyTab> myTabs = const [
-    // weekly tab
-    MyTab(
-      text: 'Weekly',
-    ),
     // daily tab
     MyTab(
       text: 'Daily',
+    ),
+    // weekly tab
+    MyTab(
+      text: 'Weekly',
     ),
   ];
 
@@ -67,11 +67,15 @@ class _TrackingState extends State<Tracking>
         lng: 45.03),
   ];
 
-  List<String> goalList = ['Buy a new phone', 'Save for college'];
-  List<String> goalListAmt = ['2000', '1500'];
+  List<String> goalList = [
+    'Buy a new phone',
+    'Save for college',
+    'Save for gift'
+  ];
+  List<String> goalListAmt = ['2000', '1500', '500'];
 
-  TextEditingController _category = TextEditingController();
-  TextEditingController _amount = TextEditingController();
+  final TextEditingController _category = TextEditingController();
+  final TextEditingController _amount = TextEditingController();
 
   final _pageController = PageController();
 
@@ -90,124 +94,126 @@ class _TrackingState extends State<Tracking>
                 "Track",
                 style: TextStyle(color: white),
               ),
+              automaticallyImplyLeading: false,
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // goal section
                   Text(
-                        'Goals',
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.w500),
-                      ),
+                    'Goals',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                  ),
                   SizedBox(height: 16),
                   Expanded(
-                    child: ListView.builder(scrollDirection: Axis.horizontal ,itemCount: goalList.length ,itemBuilder: (context, index) {
-                      if (index == 0) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          showModalBottomSheet(
-                                              context: context,
-                                              builder: (context) {
-                                                return Container(
-                                                  height: 400,
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 24,
-                                                      vertical: 24),
-                                                  decoration: BoxDecoration(
-                                                    color: black,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            16),
-                                                  ),
-                                                  child: Column(
-                                                    children: [
-                                                      
-                                                      inputText(
-                                                          'Goal',
-                                                          'eg: Buy a gift',
-                                                          _category,
-                                                          false),
-                                                      inputText(
-                                                          'Amount',
-                                                          'eg: 2000',
-                                                          _amount,
-                                                          false),
-                                                      // submit(
-                                                      //     context,
-                                                      //     _category.text.trim(),
-                                                      //     _amount.text
-                                                      //         ),
-                                                    ],
-                                                  ),
-                                                );
-                                              });
-                                        },
-                                        child: Row(
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: goalList.length + 1,
+                        itemBuilder: (context, index) {
+                          if (index == 0) {
+                            return GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return Container(
+                                        height: 400,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 24, vertical: 24),
+                                        decoration: BoxDecoration(
+                                          color: black,
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                        ),
+                                        child: Column(
                                           children: [
-                                            DottedBorder(
-                                              borderType: BorderType.RRect,
-                                              dashPattern: [3, 3],
-                                              color: midnightGreenLight,
-                                              strokeWidth: 4,
-                                              radius: Radius.circular(16),
-                                              child: Container(
-                                                width: 100,
-                                                child: Center(
-                                                  child: Icon(
-                                                    Icons
-                                                        .add_circle_outline_outlined,
-                                                    size: 36,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(width: 16),
+                                            inputText('Goal', 'eg: Buy a gift',
+                                                _category, false),
+                                            inputText('Amount', 'eg: 2000',
+                                                _amount, false),
+                                            // submit(
+                                            //     context,
+                                            //     _category.text.trim(),
+                                            //     _amount.text
+                                            //         ),
                                           ],
                                         ),
                                       );
-                                    }
-                                    return Container(
-                                      margin: EdgeInsets.only(right: 16),
-                                      width: 100,
-                                      height: 120,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: midnightGreenLight,
-                                          width: 3,
+                                    });
+                              },
+                              child: SizedBox(
+                                // height: 120,
+                                child: Row(
+                                  children: [
+                                    DottedBorder(
+                                      borderType: BorderType.RRect,
+                                      dashPattern: [3, 3],
+                                      color: midnightGreenLight,
+                                      strokeWidth: 4,
+                                      radius: Radius.circular(16),
+                                      child: Container(
+                                        width: 100,
+                                        // height: 120,
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.add_circle_outline_outlined,
+                                            size: 36,
+                                          ),
                                         ),
-                                        borderRadius: BorderRadius.circular(16),
                                       ),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          
-                                          SizedBox(height: 5),
-                                          Text(
-                                            goalList[index],
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                          SizedBox(height: 2),
-                                          Text(
-                                            '${goalListAmt[index]}',
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                    }),
+                                    ),
+                                    SizedBox(width: 16),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }
+                          return Container(
+                            margin: EdgeInsets.only(right: 16),
+                            width: 100,
+                            height: 120,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: midnightGreenLight,
+                                width: 3,
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(height: 5),
+                                Text(
+                                  goalList[index - 1],
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(height: 2),
+                                Text(
+                                  '${goalListAmt[index - 1]}',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
                   ),
                   SizedBox(height: 24),
+
+                  // daily weekly chart
                   tabsContainer(context, tabController!, myTabs),
                   SizedBox(height: 8),
+
+                  // expense section
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -218,8 +224,10 @@ class _TrackingState extends State<Tracking>
                       ),
                       IconButton(
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MapScreen()));
-                          }, icon: Icon(Icons.location_on)),
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => MapScreen()));
+                          },
+                          icon: Icon(Icons.location_on)),
                     ],
                   ),
                   SizedBox(height: 16),
@@ -263,7 +271,6 @@ class _TrackingState extends State<Tracking>
                                                   ),
                                                   child: Column(
                                                     children: [
-                                                      
                                                       inputText(
                                                           'Category',
                                                           'eg: Food',
@@ -277,8 +284,7 @@ class _TrackingState extends State<Tracking>
                                                       submit(
                                                           context,
                                                           _category.text.trim(),
-                                                          _amount.text
-                                                              ),
+                                                          _amount.text),
                                                     ],
                                                   ),
                                                 );
@@ -370,6 +376,8 @@ class _TrackingState extends State<Tracking>
                     ),
                   ),
                   SizedBox(height: 32),
+
+                  // invest section
                   Text(
                     'Invest Now!',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
@@ -381,8 +389,9 @@ class _TrackingState extends State<Tracking>
                       controller: _pageController,
                       children: [
                         investNowPage(context, 1, 'stock', 'assets/stock.svg'),
-                        investNowPage(context, 2, 'FD', '/assets/fd.svg'),
-                        investNowPage(context, 3, 'Equity', '/assets/mutual.svg'),
+                        investNowPage(context, 2, 'FD', 'assets/fd.svg'),
+                        investNowPage(
+                            context, 3, 'Equity', 'assets/mutual.svg'),
                       ],
                     ),
                   ),
@@ -399,7 +408,8 @@ class _TrackingState extends State<Tracking>
                         ),
                       ),
                     ],
-                  )
+                  ),
+                  SizedBox(height: 32),
                 ],
               ),
             ),
@@ -409,7 +419,3 @@ class _TrackingState extends State<Tracking>
     );
   }
 }
-
-
-
-

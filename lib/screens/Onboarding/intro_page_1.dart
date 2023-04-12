@@ -95,7 +95,9 @@ class _IntroPage1State extends State<IntroPage1> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(18)),
             onPressed: () {
-              Navigator.pushNamed(context, "/login");
+              if (mounted) {
+                Navigator.pushNamed(context, "/login");
+              }
             },
             child: Text(
               "Get Started",
@@ -105,6 +107,5 @@ class _IntroPage1State extends State<IntroPage1> {
         ),
       ),
     );
-    ;
   }
 }

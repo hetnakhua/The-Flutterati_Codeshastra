@@ -39,6 +39,7 @@ class AccountsPage extends StatelessWidget {
           "My Account",
           style: TextStyle(color: white),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: ListView(
         children: [

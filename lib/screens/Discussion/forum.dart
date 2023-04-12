@@ -68,15 +68,16 @@ class _ForumPageState extends State<ForumPage>
                 "Forum",
                 style: TextStyle(color: white),
               ),
+              automaticallyImplyLeading: false,
             ),
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
             floatingActionButton: FloatingActionButton(
-              elevation: 5,
-              child: Icon(Icons.add),
+                elevation: 5,
+                child: Icon(Icons.add),
                 onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (builder) => AddPost()));
-            }),
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (builder) => AddPost()));
+                }),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
@@ -264,10 +265,12 @@ class PostTile extends StatelessWidget {
             ],
           ),
           Spacer(),
-          IconButton(onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (builder) => ForumDetailPage()));
-          }, icon: Icon(Icons.chat))
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => ForumDetailPage()));
+              },
+              icon: Icon(Icons.chat))
         ]));
   }
 }

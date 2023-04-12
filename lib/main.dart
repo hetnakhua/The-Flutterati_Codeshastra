@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
       title: 'SpendSense',
       initialRoute: '/auth',
       routes: {
-        '/auth': (context) => AuthPage(),
+        '/auth': (context) => const AuthPage(),
         '/intro': (context) => const IntroPage1(),
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),

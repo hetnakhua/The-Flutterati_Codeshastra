@@ -17,7 +17,7 @@ class MyHeatMap extends StatelessWidget {
       },
       startDate: DateTime.now(),
       endDate: DateTime.now().add(Duration(days: 40)),
-      size: 40,
+      size: 36,
       defaultColor: disabledGrey.withOpacity(0.5),
       colorMode: ColorMode.opacity,
       showText: false,

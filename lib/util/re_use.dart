@@ -37,7 +37,7 @@ GestureDetector singInUp(BuildContext context, bool isLogin, Function clickMe) {
 
 Column inputText(String text, String hintText, TextEditingController controller,
     bool obscT) {
-
+  // HomeController homeController = Get.put(HomeController());
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -126,8 +126,8 @@ Container tabsContainer(
           child: TabBarView(
             controller: tabController,
             children: [
-              TabWeekly(),
               TabDaily(),
+              TabWeekly(),
             ],
           ),
         )
@@ -302,7 +302,8 @@ Widget balanceCard(BuildContext context) {
       });
 }
 
-Container investNowPage(BuildContext context, int pg, String topic) {
+Container investNowPage(
+    BuildContext context, int pg, String topic, String img) {
   return Container(
     padding: EdgeInsets.all(16),
     width: 200,

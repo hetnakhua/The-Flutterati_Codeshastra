@@ -118,24 +118,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ),
               actions: [
                 IconButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut().then((value) {
-                      print("Signed out");
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (builder) => LoginScreen()));
-                    });
-                  },
-                  icon: Icon(
-                    Icons.logout_rounded,
-                    color: white,
-                    size: 30,
-                  ),
-                ),
-                IconButton(onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatListScreen(chats: chat)));
-                }, icon: Icon(Icons.message, color: Colors.white,))
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ChatListScreen(chats: chat)));
+                    },
+                    icon: Icon(
+                      Icons.message,
+                      color: Colors.white,
+                    ))
               ],
             ),
             body: Padding(

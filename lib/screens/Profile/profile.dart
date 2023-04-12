@@ -1,9 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterati_codeshastra/constants/colors.dart';
+import 'package:flutterati_codeshastra/screens/Auth/login.dart';
 import 'package:flutterati_codeshastra/screens/Home/home.dart';
 import 'package:flutterati_codeshastra/screens/Profile/heat_map.dart';
 import 'package:flutterati_codeshastra/util/navbar.dart';
-
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -26,13 +27,30 @@ class _ProfileState extends State<Profile> {
         ),
         leading: GestureDetector(
           onTap: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (builder) => MyNavbar()));
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (builder) => MyNavbar()));
           },
           child: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: white,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut().then((value) {
+                print("Signed out");
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => LoginScreen()));
+              });
+            },
+            icon: Icon(
+              Icons.logout_rounded,
+              color: white,
+              size: 30,
+            ),
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -62,40 +80,42 @@ class _ProfileState extends State<Profile> {
           ),
           SizedBox(height: (10 + 50)),
           // name
+          Text(
+            'Het Nakhua',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 20,
+            ),
+          ),
+
+          // email id
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.email_outlined,
+                size: 20,
+                color: Colors.grey,
+              ),
+              SizedBox(
+                width: 10,
+              ),
               Text(
-                'Het Nakhua',
+                'hetsnakhua@gmail.com',
                 style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 16,
+                  color: Colors.grey,
                 ),
               ),
+            ],
+          ),
 
-              // email id
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.email_outlined,
-                    size: 20,
-                    color: Colors.grey,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'hetsnakhua@gmail.com',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
+          SizedBox(height: 24),
 
-              SizedBox(height: 40),
+          MyHeatMap(),
 
-              MyHeatMap(),
+          SizedBox(height: 16),
         ],
       ),
     );

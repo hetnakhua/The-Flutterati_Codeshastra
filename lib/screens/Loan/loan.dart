@@ -30,6 +30,7 @@ class _LoanState extends State<Loan> {
           "Loan",
           style: TextStyle(color: white),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: ListView(
         children: [
