@@ -84,7 +84,7 @@ class _TrackingState extends State<Tracking>
     return SafeArea(
       child: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height + 200,
+          height: MediaQuery.of(context).size.height + 240,
           child: Scaffold(
             appBar: AppBar(
               backgroundColor: raisinBlack,
@@ -107,105 +107,108 @@ class _TrackingState extends State<Tracking>
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                   ),
                   SizedBox(height: 16),
-                  Expanded(
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: goalList.length + 1,
-                        itemBuilder: (context, index) {
-                          if (index == 0) {
-                            return GestureDetector(
-                              onTap: () {
-                                showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return Container(
-                                        height: 400,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 24, vertical: 24),
-                                        decoration: BoxDecoration(
-                                          color: black,
-                                          borderRadius:
-                                              BorderRadius.circular(16),
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            inputText('Goal', 'eg: Buy a gift',
-                                                _category, false),
-                                            inputText('Amount', 'eg: 2000',
-                                                _amount, false),
-                                            // submit(
-                                            //     context,
-                                            //     _category.text.trim(),
-                                            //     _amount.text
-                                            //         ),
-                                          ],
-                                        ),
-                                      );
-                                    });
-                              },
-                              child: SizedBox(
-                                // height: 120,
-                                child: Row(
-                                  children: [
-                                    DottedBorder(
-                                      borderType: BorderType.RRect,
-                                      dashPattern: [3, 3],
-                                      color: midnightGreenLight,
-                                      strokeWidth: 4,
-                                      radius: Radius.circular(16),
-                                      child: Container(
-                                        width: 100,
-                                        // height: 120,
-                                        child: Center(
-                                          child: Icon(
-                                            Icons.add_circle_outline_outlined,
-                                            size: 36,
+                  SizedBox(
+                    height: 100,
+                    child: Expanded(
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: goalList.length + 1,
+                          itemBuilder: (context, index) {
+                            if (index == 0) {
+                              return GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) {
+                                        return Container(
+                                          height: 400,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 24, vertical: 24),
+                                          decoration: BoxDecoration(
+                                            color: black,
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              inputText('Goal', 'eg: Buy a gift',
+                                                  _category, false),
+                                              inputText('Amount', 'eg: 2000',
+                                                  _amount, false),
+                                              // submit(
+                                              //     context,
+                                              //     _category.text.trim(),
+                                              //     _amount.text
+                                              //         ),
+                                            ],
+                                          ),
+                                        );
+                                      });
+                                },
+                                child: SizedBox(
+                                  // height: 120,
+                                  child: Row(
+                                    children: [
+                                      DottedBorder(
+                                        borderType: BorderType.RRect,
+                                        dashPattern: [3, 3],
+                                        color: midnightGreenLight,
+                                        strokeWidth: 4,
+                                        radius: Radius.circular(16),
+                                        child: Container(
+                                          width: 100,
+                                          // height: 120,
+                                          child: Center(
+                                            child: Icon(
+                                              Icons.add_circle_outline_outlined,
+                                              size: 36,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(width: 16),
-                                  ],
+                                      SizedBox(width: 16),
+                                    ],
+                                  ),
                                 ),
+                              );
+                            }
+                            return Container(
+                              margin: EdgeInsets.only(right: 16),
+                              width: 100,
+                              height: 120,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: midnightGreenLight,
+                                  width: 3,
+                                ),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(height: 5),
+                                  Text(
+                                    goalList[index - 1],
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  SizedBox(height: 2),
+                                  Text(
+                                    '${goalListAmt[index - 1]}',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
                               ),
                             );
-                          }
-                          return Container(
-                            margin: EdgeInsets.only(right: 16),
-                            width: 100,
-                            height: 120,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: midnightGreenLight,
-                                width: 3,
-                              ),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(height: 5),
-                                Text(
-                                  goalList[index - 1],
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                SizedBox(height: 2),
-                                Text(
-                                  '${goalListAmt[index - 1]}',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
+                          }),
+                    ),
                   ),
                   SizedBox(height: 24),
 
@@ -235,7 +238,6 @@ class _TrackingState extends State<Tracking>
                     height: 120,
                     child: Row(
                       children: [
-                        SizedBox(width: 12),
                         StreamBuilder(
                             stream: homeController.getUserExpenseDetails(),
                             builder: (context, snapshot) {
@@ -388,7 +390,7 @@ class _TrackingState extends State<Tracking>
                     child: PageView(
                       controller: _pageController,
                       children: [
-                        investNowPage(context, 1, 'stock', 'assets/stock.svg'),
+                        investNowPage(context, 1, 'Stocks', 'assets/stock.svg'),
                         investNowPage(context, 2, 'FD', 'assets/fd.svg'),
                         investNowPage(
                             context, 3, 'Equity', 'assets/mutual.svg'),
@@ -405,6 +407,8 @@ class _TrackingState extends State<Tracking>
                         effect: ExpandingDotsEffect(
                           activeDotColor: midnightGreenLight,
                           dotColor: disabledGrey,
+                          dotHeight: 8.0,
+                          dotWidth: 8.0,
                         ),
                       ),
                     ],

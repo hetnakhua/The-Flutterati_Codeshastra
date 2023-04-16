@@ -54,9 +54,7 @@ dependencies:
   custom_info_window:
   dialog_flowtter:
   webview_flutter: ^2.0.13
-  flutter_svg:
-
-
+  flutter_svg: ^2.0.5
 
   dotted_border: ^2.0.0+3
   fl_chart: ^0.60.0

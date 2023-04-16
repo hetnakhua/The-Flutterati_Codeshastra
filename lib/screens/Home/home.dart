@@ -66,7 +66,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return SafeArea(
       child: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height + 500,
+          height: MediaQuery.of(context).size.height + 400,
           child: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.transparent,

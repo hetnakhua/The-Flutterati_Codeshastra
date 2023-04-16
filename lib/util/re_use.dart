@@ -9,6 +9,7 @@ import 'package:flutterati_codeshastra/models/income.dart';
 import 'package:flutterati_codeshastra/screens/Home/controller/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 GestureDetector singInUp(BuildContext context, bool isLogin, Function clickMe) {
   return GestureDetector(
@@ -312,13 +313,19 @@ Container investNowPage(
       color: outerSpaceGrey,
       borderRadius: BorderRadius.circular(16),
     ),
-    child: Text(
-      topic,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-      ),
+    child: Column(
+      children: [
+        SvgPicture.asset(img, height: 80),
+        SizedBox(height: 8),
+        Text(
+          topic,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
     ),
   );
 }
