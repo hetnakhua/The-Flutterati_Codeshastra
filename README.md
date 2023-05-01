@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-## About s
+## About
 
 $pend$ense is a mobile app designed to provide a seamless user experience for students who are looking to manage their finances effectively. With this app, users can easily track their expenses, create budgets, manage their loans, and make informed decisions about their financial goals - all from the convenience of their mobile device.
 
